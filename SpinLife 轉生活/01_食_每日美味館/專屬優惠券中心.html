@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SpinLife 轉生活｜ATM 專屬電子優惠券中心（招商展示版）</title>
+<style>
+  * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Microsoft JhengHei", sans-serif; }
+  body { margin: 0; padding: 14px 10px 40px; background: linear-gradient(135deg, #101223 0%, #1c2541 100%); color: #fff; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+  .top-bar { width: 100%; max-width: 540px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; gap: 8px; }
+  .home-btn { background: #ffd700; color: #1a1a2e; font-size: 12px; font-weight: 900; padding: 6px 12px; border-radius: 20px; text-decoration: none; }
+  .atm-badge { background: rgba(0, 184, 148, 0.2); border: 1px solid #00b894; color: #55efc4; font-size: 11px; font-weight: bold; padding: 5px 10px; border-radius: 20px; }
+  .header { text-align: center; max-width: 540px; margin-bottom: 14px; }
+  .header h1 { margin: 0; font-size: 21px; color: #ffd700; text-shadow: 0 2px 10px rgba(255,215,0,0.4); }
+  .header p { margin: 4px 0 0; font-size: 12px; color: #b8c2dc; }
+  .atm-ticket { width: 100%; max-width: 540px; background: #fff; color: #1a1a2e; border-radius: 18px; border: 3px solid #ffd700; box-shadow: 0 12px 30px rgba(0,0,0,0.55); overflow: hidden; position: relative; margin-bottom: 20px; }
+  .ticket-head { background: linear-gradient(90deg, #e94560, #c0392b); color: #fff; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; }
+  .ticket-head span { font-size: 12px; font-weight: 900; letter-spacing: 0.5px; }
+  .live-sec { background: rgba(0,0,0,0.35); padding: 3px 8px; border-radius: 12px; font-family: monospace; font-size: 12px; color: #ffd700; font-weight: bold; }
+  .ticket-body { padding: 18px 16px; text-align: center; position: relative; }
+  .shop-area { display: inline-block; background: #f1f2f6; color: #57606f; font-size: 11px; font-weight: bold; padding: 3px 10px; border-radius: 12px; margin-bottom: 6px; }
+  .shop-name { font-size: 22px; font-weight: 900; color: #1a1a2e; margin: 2px 0 10px; }
+  .offer-box { background: linear-gradient(135deg, #fff9db, #fff3bf); border: 2px dashed #f59f00; border-radius: 14px; padding: 14px 10px; margin-bottom: 12px; }
+  .offer-tag { font-size: 11px; font-weight: bold; color: #e67700; margin-bottom: 4px; }
+  .offer-main { font-size: 20px; font-weight: 900; color: #d9480f; line-height: 1.3; }
+  .offer-note { font-size: 11px; color: #666; margin-top: 6px; }
+  .ticket-tear { border-top: 2px dashed #dfe4ea; margin: 14px -16px; position: relative; }
+  .btn-redeem { width: 100%; padding: 14px; font-size: 16px; font-weight: 900; color: #fff; background: linear-gradient(90deg, #00b894, #009432); border: none; border-radius: 50px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,184,148,0.4); }
+  .btn-redeem:disabled { background: #b2bec3; box-shadow: none; cursor: not-allowed; }
+  .btn-nav { display: inline-block; margin-top: 10px; font-size: 12px; color: #0984e3; font-weight: bold; text-decoration: none; }
+  .used-stamp { display: none; position: absolute; top: 48%; left: 50%; transform: translate(-50%, -50%) rotate(-14deg); border: 5px solid #e94560; color: #e94560; font-size: 28px; font-weight: 900; padding: 6px 18px; border-radius: 12px; background: rgba(255,255,255,0.92); letter-spacing: 2px; pointer-events: none; z-index: 10; box-shadow: 0 4px 15px rgba(233,69,96,0.3); }
+  .wall-title { width: 100%; max-width: 540px; font-size: 14px; font-weight: 900; color: #ffd700; margin: 6px 0 10px; display: flex; align-items: center; gap: 6px; }
+  .coupon-grid { width: 100%; max-width: 540px; display: grid; grid-template-columns: 1fr; gap: 10px; }
+  .mini-card { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,215,0,0.35); border-radius: 14px; padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+  .mini-info h4 { margin: 0 0 3px; font-size: 15px; color: #fff; }
+  .mini-info p { margin: 0; font-size: 12px; color: #ffe066; font-weight: bold; }
+  .mini-info span { font-size: 10px; color: #a4b0be; }
+  .btn-pick { background: #ffd700; color: #1a1a2e; border: none; padding: 8px 14px; border-radius: 20px; font-size: 12px; font-weight: 900; cursor: pointer; white-space: nowrap; }
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="home-btn" href="../../index.html">🏠 回總部大廳</a>
+  <span class="atm-badge">🔒 防截圖動態驗證中（業務展示版）</span>
+</div>
+
+<div class="header">
+  <h1>🎟️ SpinLife 轉生活・專屬電子優惠券</h1>
+  <p>結帳前出示本動態畫面，由店員點擊「確認核銷」即可享專屬禮遇</p>
+</div>
+
+<div class="atm-ticket" id="ticketBox">
+  <div class="ticket-head">
+    <span>🎰 SPINLIFE 創始合作店家禮遇券</span>
+    <span class="live-sec" id="antiFakeClock">00:00:00</span>
+  </div>
+  <div class="ticket-body">
+    <div class="used-stamp" id="usedStamp">已核銷 USED</div>
+    <div class="shop-area" id="tArea">台中市・招商展示範本</div>
+    <div class="shop-name" id="tShop">【示範店家】台中創始合作名店</div>
+    <div class="offer-box">
+      <div class="offer-tag">🎁 本次轉出專屬優惠內容（展示範例）</div>
+      <div class="offer-main" id="tOffer">內用點主餐・免費招待招牌小菜乙份</div>
+      <div class="offer-note" id="tDate">限今日現場內用／外帶結帳前出示有效（每桌限用一張）</div>
+    </div>
+    <div class="ticket-tear"></div>
+    <button class="btn-redeem" id="redeemBtn" onclick="confirmRedeem()">✅ 店員現場點擊・確認核銷</button>
+    <div id="redeemLog" style="font-size:11px; color:#e94560; font-weight:bold; margin-top:6px;"></div>
+    <a class="btn-nav" id="tMap" href="https://google.com" target="_blank">📍 開啟 Google 地圖導航前往本店 ➔</a>
+  </div>
+</div>
+
+<div class="wall-title">🔥 台中八大戰區・合作優惠模式展示範本（點擊切換示範票券）</div>
+<div class="coupon-grid" id="couponWall"></div>
+
+<script>
+const sampleCoupons = [
+  { area: "北屯區・崇德/北平商圈", shop: "【示範店家】北屯人氣麵食館", offer: "點主餐免費招待招牌小菜乙份", q: "台中市北屯區" },
+  { area: "西屯區・逢甲/七期商圈", shop: "【示範店家】西屯炭火燒肉名店", offer: "憑券消費套餐招待主廚精選飲品乙杯", q: "台中市西屯區" },
+  { area: "南屯區・公益/黎明商圈", shop: "【示範店家】南屯禪風火鍋店", offer: "開鍋憑券免費加贈鮮嫩梅花豬肉盤乙份", q: "台中市南屯區" },
+  { area: "北區・一中/中國醫商圈", shop: "【示範店家】一中排隊冰品小吃", offer: "購買兩份招牌餐點現折 10 元", q: "台中市北區" },
+  { area: "西區・勤美/審計商圈", shop: "【示範店家】草悟道手作茶飲", offer: "內用消費滿 300 元招待招牌點心乙份", q: "台中市西區" },
+  { area: "中區・第二市場商圈", shop: "【示範店家】中區百年古早味", offer: "點招牌套餐免費加贈滷鴨蛋乙顆", q: "台中市中區" },
+  { area: "東區・LaLaport/旱溪商圈", shop: "【示範店家】東區古早味製麵", offer: "點乾麵系列免費招待古早味滷味拼盤", q: "台中市東區" },
+  { area: "南區・忠孝夜市/興大商圈", shop: "【示範店家】忠孝夜市老牌米糕", offer: "點筒仔米糕＋排骨酥湯現折 10 元", q: "台中市南區" }
+];
+
+function updateLiveTimer() {
+  const n = new Date();
+  const pad = v => v < 10 ? "0" + v : "" + v;
+  document.getElementById("antiFakeClock").innerText = pad(n.getHours()) + ":" + pad(n.getMinutes()) + ":" + pad(n.getSeconds());
+  document.getElementById("tDate").innerText = "限今日（" + n.getFullYear() + "/" + pad(n.getMonth()+1) + "/" + pad(n.getDate()) + "）現場結帳前出示有效";
+}
+setInterval(updateLiveTimer, 1000);
+updateLiveTimer();
+
+function loadTicket(area, shop, offer, q) {
+  document.getElementById("tArea").innerText = area;
+  document.getElementById("tShop").innerText = shop;
+  document.getElementById("tOffer").innerText = offer;
+  document.getElementById("tMap").href = "https://google.com" + encodeURIComponent(q || ("台中市 " + shop));
+  document.getElementById("usedStamp").style.display = "none";
+  const btn = document.getElementById("redeemBtn");
+  btn.disabled = false;
+  btn.innerText = "✅ 店員現場點擊・確認核銷";
+  document.getElementById("redeemLog").innerText = "";
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function confirmRedeem() {
+  if (!confirm("⚠️ 請確認您是【店家現場服務人員】！\n按下確定後本優惠券將立即蓋章核銷並失效，確定核銷嗎？")) return;
+  const n = new Date();
+  const pad = v => v < 10 ? "0" + v : "" + v;
+  document.getElementById("usedStamp").style.display = "block";
+  const btn = document.getElementById("redeemBtn");
+  btn.disabled = true;
+  btn.innerText = "🔒 本券已於現場完成核銷";
+  document.getElementById("redeemLog").innerText = "核銷時間：" + pad(n.getHours()) + ":" + pad(n.getMinutes()) + ":" + pad(n.getSeconds()) + "｜感謝您的光臨！";
+}
+
+const params = new URLSearchParams(window.location.search);
+if (params.get("shop")) {
+  loadTicket(
+    params.get("area") || "台中市・專屬合作店家",
+    params.get("shop"),
+    params.get("offer") || "憑本券消費享創始合作店家專屬禮遇",
+    params.get("q") || ("台中市 " + params.get("shop"))
+  );
+}
+
+const wall = document.getElementById("couponWall");
+sampleCoupons.forEach(c => {
+  const div = document.createElement("div");
+  div.className = "mini-card";
+  div.innerHTML = '<div class="mini-info"><span>' + c.area + '</span><h4>' + c.shop + '</h4><p>🎁 ' + c.offer + '</p></div><button class="btn-pick" onclick="loadTicket(\'' + c.area + '\',\'' + c.shop + '\',\'' + c.offer + '\',\'' + c.q + '\')">展示此券</button>';
+  wall.appendChild(div);
+});
+</script>
+</body>
+</html>
