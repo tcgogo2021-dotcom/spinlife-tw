@@ -133,6 +133,16 @@
       </div>
     </div>
   </div>
+  <div class="section" style="border:2px solid #e94560; background:linear-gradient(135deg,#241226,#14182b);">
+    <h2 class="sec-title">🎁 四、現場試玩：送給簽約店家的「櫃檯結帳拉霸機」</h2>
+    <p class="sec-sub">業務現場 Demo 給老闆看！客人結帳掃碼轉折扣或小菜，<strong>主動留下 Google 五星好評</strong>，回購率翻倍！</p>
+    <div style="background:#0d101d; border:2px solid #ffd700; border-radius:16px; padding:16px; text-align:center; max-width:460px; margin:0 auto;">
+      <div style="font-size:12px; color:#ffe066; margin-bottom:8px;">🏪 範例展示：【○○人氣餐廳・結帳幸運轉盤】</div>
+      <div id="demoPrize" style="background:#fff; color:#c92a2a; font-size:20px; font-weight:900; padding:18px 10px; border-radius:12px; margin-bottom:12px;">🎰 點擊下方按鈕・幫客人轉好禮！</div>
+      <button id="demoBtn" onclick="spinDemoPrize()" style="width:100%; padding:12px; font-size:16px; font-weight:900; color:#1a1a2e; background:linear-gradient(90deg,#ffe066,#f59f00); border:none; border-radius:30px; cursor:pointer;">🎁 立即試轉・結帳驚喜獎項</button>
+      <div id="demoNote" style="font-size:12px; color:#51cf66; margin-top:10px; display:none;">✅ 獎項可由老闆自由設定（如：送小菜、飲料、下次折50元），零額外廣告費！</div>
+    </div>
+  </div>
 
   <div class="section">
     <h2 class="sec-title">🤝 四、創始店家「先賺錢・零風險」限量合作方案</h2>
@@ -168,14 +178,44 @@
   <div class="cta-box">
     <h2 style="margin:0 0 8px; color:#ffd700; font-size:22px;">🔥 搶佔您所在商圈的「前 10 名創始 VIP 黃金席位」</h2>
     <p style="margin:0; font-size:14px; color:#dee2e6;">同業競爭激烈，每區左右看板僅限 10 席，額滿即止！立即體驗拉霸機或聯繫創辦團隊預約卡位：</p>
+      <div class="cta-box">
+    <h2 style="margin:0 0 8px; color:#ffd700; font-size:22px;">🔥 搶佔您所在商圈的「前 10 名創始 VIP 黃金席位」</h2>
+    <p style="margin:0; font-size:14px; color:#dee2e6;">每區左右看板僅限 10 席，額滿即止！立即加官方 LINE 預約卡位，或洽談業務合夥：</p>
     <div class="cta-btns">
-      <a class="btn-gold" href="../../index.html">🎰 立即體驗 14 區美食拉霸機</a>
-      <button class="btn-line" onclick="copyPitch()">📋 一鍵複製招商介紹文案（傳給老闆／朋友）</button>
+      <a class="btn-line" href="https://lin.ee/6D0MmQt" target="_blank">💬 商業合作・一鍵加官方 LINE</a>
+      <a class="btn-gold" href="../../index.html">🎰 體驗 14 區美食拉霸機</a>
+      <button class="btn-gold" style="background:#fff; color:#1a1a2e;" onclick="copyPitch()">📋 複製招商文案傳給老闆</button>
     </div>
   </div>
 </div>
 
 <script>
+function spinDemoPrize() {
+  const prizes = [
+    "🎉 恭喜抽中：【招牌小菜乙份】（留五星好評即贈）",
+    "🥤 恭喜抽中：【古早味紅茶／飲品乙杯】",
+    "💰 恭喜抽中：【下次消費現折 50 元抵用券】",
+    "🍖 恭喜抽中：【主廚私房炸物拼盤乙份】",
+    "🔥 恭喜抽中：【今日整單 9 折 VIP 禮遇】"
+  ];
+  const btn = document.getElementById('demoBtn');
+  const box = document.getElementById('demoPrize');
+  btn.disabled = true;
+  let c = 0;
+  const t = setInterval(() => {
+    c++;
+    box.innerText = prizes[Math.floor(Math.random() * prizes.length)];
+    if (c >= 14) {
+      clearInterval(t);
+      const win = prizes[Math.floor(Math.random() * prizes.length)];
+      box.innerText = win;
+      document.getElementById('demoNote').style.display = 'block';
+      btn.disabled = false;
+      btn.innerText = '🎁 再試轉一次給老闆看！';
+    }
+  }, 75);
+}
+
 function calcSave() {
   const rev = parseFloat(document.getElementById('revInput').value) || 0;
   const feeYear = Math.round(rev * 0.35 * 12);
@@ -186,11 +226,12 @@ function calcSave() {
 }
 
 function copyPitch() {
-  const txt = '🎰【SpinLife 轉生活｜大台中 14 區・1,400 家名店美食拉霸機】正式上線！\n不抽成、不綁約，讓大台中吃貨一轉就直接 Google 導航到您店門口！\n目前各區「左右黃金 VIP 看板（每區僅限 10 席）」創始優惠招募中，歡迎老闆搶先卡位，也歡迎業務夥伴洽談高分潤合作！';
+  const txt = '🎰【SpinLife 轉生活｜大台中 14 區・1,400 家名店美食拉霸機】正式上線！\n不抽成、不綁約，讓大台中吃貨一轉就直接 Google 導航到您店門口！\n目前各區「左右黃金 VIP 看板（每區僅限 10 席）」創始優惠招募中，歡迎加官方 LINE 搶先卡位！';
   if (navigator.clipboard) {
-    navigator.clipboard.writeText(txt).then(() => alert('✅ 已複製《SpinLife 3.0 招商介紹文案》，快貼到 LINE 傳給餐廳老闆或合作夥伴吧！'));
+    navigator.clipboard.writeText(txt).then(() => alert('✅ 已複製《SpinLife 3.0 招商介紹文案》，快貼到 LINE 傳給餐廳老闆吧！'));
   }
 }
 </script>
 </body>
 </html>
+
