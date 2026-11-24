@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SpinLife 轉生活｜台中市潭子區百大美食拉霸機</title>
+<style>
+  * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Microsoft JhengHei", sans-serif; }
+  body { margin: 0; padding: 12px 8px 40px; background: linear-gradient(135deg, #121426 0%, #1d2642 100%); color: #fff; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+  .top-nav { width: 100%; max-width: 1120px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; gap: 8px; }
+  .btn-home { background: #ffd700; color: #1a1a2e; font-size: 12px; font-weight: 900; padding: 6px 12px; border-radius: 20px; text-decoration: none; }
+  .area-badge { background: rgba(233, 69, 96, 0.25); border: 1px solid #e94560; color: #ff7675; font-size: 11px; font-weight: bold; padding: 5px 10px; border-radius: 20px; }
+  .header { text-align: center; margin-bottom: 12px; }
+  .header h1 { margin: 0; font-size: 22px; color: #ffd700; text-shadow: 0 2px 10px rgba(255,215,0,0.4); }
+  .header p { margin: 4px 0 0; font-size: 12px; color: #b8c2dc; }
+  .main-arena { width: 100%; max-width: 1120px; display: flex; justify-content: center; align-items: flex-start; gap: 12px; }
+  .ad-column { width: 185px; display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+  .ad-card { height: 78px; border-radius: 12px; padding: 8px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; text-decoration: none; color: #fff; position: relative; overflow: hidden; transition: transform 0.2s; }
+  .ad-tag { position: absolute; top: 4px; left: 6px; background: #ffd700; color: #1a1a2e; font-size: 9px; font-weight: 900; padding: 1px 6px; border-radius: 6px; }
+  .ad-title { font-size: 13px; font-weight: 900; line-height: 1.2; }
+  .ad-sub { font-size: 10px; color: #ffe066; margin-top: 2px; }
+  .center-stage { flex: 1; max-width: 560px; background: rgba(255,255,255,0.06); border: 2px solid #ffd700; border-radius: 20px; padding: 16px 12px; box-shadow: 0 12px 32px rgba(0,0,0,0.5); text-align: center; }
+  .cat-bar { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-bottom: 10px; }
+  .cat-btn { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,215,0,0.4); color: #fff; padding: 6px 10px; border-radius: 18px; font-size: 12px; font-weight: bold; cursor: pointer; }
+  .cat-btn.active { background: #ffd700; color: #1a1a2e; border-color: #ffd700; }
+  .filter-row { display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 12px; font-size: 12px; color: #ffe066; flex-wrap: wrap; }
+  .slot-box { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; background: #0d0f1d; border: 3px solid #ffd700; border-radius: 14px; padding: 10px 6px; margin-bottom: 14px; }
+  .reel { background: #fff; color: #1a1a2e; border-radius: 10px; height: 84px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 4px; font-weight: 900; }
+  .reel-lbl { font-size: 10px; color: #888; margin-bottom: 3px; }
+  .reel-val { font-size: 13px; color: #c92a2a; line-height: 1.2; word-break: break-word; }
+  .btn-spin { width: 100%; padding: 14px; font-size: 18px; font-weight: 900; color: #1a1a2e; background: linear-gradient(90deg, #ffe066, #f59f00); border: none; border-radius: 50px; cursor: pointer; box-shadow: 0 5px 15px rgba(245,159,0,0.45); }
+  .result-panel { display: none; margin-top: 14px; background: #fff; color: #1a1a2e; border-radius: 14px; padding: 14px 12px; text-align: left; border: 2px solid #ffd700; }
+  .res-shop { font-size: 19px; font-weight: 900; color: #1a1a2e; margin: 0 0 4px; }
+  .res-dish { font-size: 15px; font-weight: 900; color: #e94560; margin: 0 0 6px; }
+  .res-meta { font-size: 12px; color: #555; margin-bottom: 8px; line-height: 1.4; }
+  .res-menu { background: #f8f9fa; border-radius: 8px; padding: 8px; font-size: 12px; color: #333; margin-bottom: 10px; }
+  .res-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+  .btn-map { flex: 1; text-align: center; background: #00b894; color: #fff; text-decoration: none; padding: 10px; border-radius: 25px; font-size: 13px; font-weight: 900; }
+  .btn-share { flex: 1; text-align: center; background: #06c755; color: #fff; border: none; padding: 10px; border-radius: 25px; font-size: 13px; font-weight: 900; cursor: pointer; }
+  @media (max-width: 820px) {
+    .main-arena { flex-direction: column; align-items: center; }
+    .ad-column { width: 100%; max-width: 560px; display: grid; grid-template-columns: repeat(2, 1fr); }
+    .center-stage { order: -1; width: 100%; }
+  }
+</style>
+</head>
+<body>
+<div class="top-nav">
+  <a class="btn-home" href="../../../index.html">🏠 回總部大廳</a>
+  <span class="area-badge">📍 北屯延伸・台中市潭子區（100家名店・500道菜）</span>
+</div>
+<div class="header">
+  <h1>🎰 台中市潭子區・百大美食拉霸機</h1>
+  <p>潭子加工區・頭家厝・勝利路・雅潭路・潭子夜市商圈全收錄</p>
+</div>
+<div class="main-arena">
+  <div class="ad-column">
+    <a class="ad-card" href="https://google.com" target="_blank" style="background:linear-gradient(135deg,#2c1e05,#1a1a2e); border:1.5px solid #ffd700;"><span class="ad-tag">👑 VIP 1</span><div class="ad-title" style="color:#ffd700;">潭子勝利路商圈</div><div class="ad-sub">在地人三餐與宵夜一級戰區</div></a>
+    <a class="ad-card" href="https://google.com" target="_blank" style="background:linear-gradient(135deg,#2c1e05,#1a1a2e); border:1.5px solid #ffd700;"><span class="ad-tag">👑 VIP 2</span><div class="ad-title" style="color:#ffd700;">頭家厝生活圈</div><div class="ad-sub">緊鄰北屯高密度住宅美食街</div></a>
+    <a class="ad-card" href="javascript:void(0)" onclick="location.href=encodeURI('../../../99_公司總部與招商資料/轉生活創業與招商簡報.html')" style="background:linear-gradient(135deg,#2c1e05,#1a1a2e); border:1.5px solid #ffd700;"><span class="ad-tag">🔥 招商中</span><div class="ad-title" style="color:#ffd700;">加工區創始席位</div><div class="ad-sub">先賺錢方案限量招募</div></a>
+    <a class="ad-card" href="javascript:void(0)" onclick="location.href=encodeURI('../../../99_公司總部與招商資料/轉生活創業與招商簡報.html')" style="background:linear-gradient(135deg,#2c1e05,#1a1a2e); border:1.5px solid #ffd700;"><span class="ad-tag">🔥 招商中</span><div class="ad-title" style="color:#ffd700;">雅潭黃金席位</div><div class="ad-sub">高精準在地導流</div></a>
+    <a class="ad-card" href="javascript:void(0)" onclick="location.href=encodeURI('../../../99_公司總部與招商資料/轉生活創業與招商簡報.html')" style="background:linear-gradient(135deg,#2c1e05,#1a1a2e); border:1.5px solid #ffd700;"><span class="ad-tag">🔥 招商中</span><div class="ad-title" style="color:#ffd700;">中山特約席位</div><div class="ad-sub">歡迎名店進駐</div></a>
+  </div>
+  <div class="center-stage">
+    <div class="cat-bar" id="catBar">
+      <button class="cat-btn active" onclick="setCat('ALL', this)">🌟 全部(100)</button>
+      <button class="cat-btn" onclick="setCat('人氣小吃', this)">🥢 人氣小吃</button>
+      <button class="cat-btn" onclick="setCat('台味合菜', this)">🍲 台味合菜</button>
+      <button class="cat-btn" onclick="setCat('鍋物燒烤', this)">🥩 鍋物燒烤</button>
+      <button class="cat-btn" onclick="setCat('異國美饌', this)">🌍 異國美饌</button>
+      <button class="cat-btn" onclick="setCat('咖啡午茶', this)">☕ 咖啡午茶</button>
+    </div>
+    <div class="filter-row">
+      <label><input type="checkbox" id="onlyOpen" checked> 🟢 僅抽目前營業中</label>
+      <span id="poolCount">目前轉輪池：100 家店</span>
+    </div>
+    <div class="slot-box">
+      <div class="reel"><div class="reel-lbl">商圈分類</div><div class="reel-val" id="rCat">潭子百大</div></div>
+      <div class="reel"><div class="reel-lbl">命定餐廳</div><div class="reel-val" id="rShop">準備開轉</div></div>
+      <div class="reel"><div class="reel-lbl">招牌必點</div><div class="reel-val" id="rDish">500道菜色</div></div>
+    </div>
+    <button class="btn-spin" id="spinBtn" onclick="spinSlot()">🎰 立即開轉・潭子吃什麼！</button>
+    <div class="result-panel" id="resPanel">
+      <h3 class="res-shop" id="resShop">店名</h3>
+      <div class="res-dish" id="resDish">🔥 招牌必點：菜名</div>
+      <div class="res-meta" id="resMeta">分類｜營業時間</div>
+      <div class="res-menu" id="resMenu">本店五大招牌菜：</div>
+      <div class="res-actions">
+        <a class="btn-map" id="resMap" href="#" target="_blank">📍 Google 地圖導航</a>
+        <button class="btn-share" onclick="copyShare()">💬 複製戰果揪朋友</button>
+      </div>
+    </div>
+  </div>
+  <div class="ad-column">
+    <a class="ad-card" href="https://google.com" target="_blank" style="background:linear-gradient(135deg,#2c1e05,#1a1a2e); border:1.5px solid #ffd700;"><span class="ad-tag">👑 VIP 6</span><div class="ad-title" style="color:#ffd700;">潭子觀光夜市</div><div class="ad-sub">在地人氣夜晚美食匯</div></a>
+    <a class="ad-card" href="https://google.com" target="_blank" style="background:linear-gradient(135deg,#2c1e05,#1a1a2e); border:1.5px solid #ffd700;"><span class="ad-tag">👑 VIP 7</span><div class="ad-title" style="color:#ffd700;">潭秀黃昏市場</div><div class="ad-sub">家庭熟食與小吃寶庫</div></a>
+    <a class="ad-card" href="javascript:void(0)" onclick="location.href=encodeURI('../../../99_公司總部與招商資料/轉生活創業與招商簡報.html')" style="background:linear-gradient(135deg,#2c1e05,#1a1a2e); border:1.5px solid #ffd700;"><span class="ad-tag">🔥 招商中</span><div class="ad-title" style="color:#ffd700;">圓通創始席位</div><div class="ad-sub">一鍵導航吸客</div></a>
+    <a class="ad-card" href="javascript:void(0)" onclick="location.href=encodeURI('../../../99_公司總部與招商資料/轉生活創業與招商簡報.html')" style="background:linear-gradient(135deg,#2c1e05,#1a1a2e); border:1.5px solid #ffd700;"><span class="ad-tag">🔥 招商中</span><div class="ad-title" style="color:#ffd700;">限量廣告席位</div><div class="ad-sub">每類僅限20席</div></a>
+    <a class="ad-card" href="javascript:void(0)" onclick="location.href=encodeURI('../../../99_公司總部與招商資料/轉生活創業與招商簡報.html')" style="background:linear-gradient(135deg,#2c1e05,#1a1a2e); border:1.5px solid #ffd700;"><span class="ad-tag">🔥 招商中</span><div class="ad-title" style="color:#ffd700;">特約合作席位</div><div class="ad-sub">點擊看先賺錢方案</div></a>
+  </div>
+</div>
+<script>
+const restaurants = [
+  { name: "潭子臭豆腐（潭興路總店）", cat: "人氣小吃", open: 15, close: 23, dishes: ["外酥內嫩臭豆腐", "大腸蚵仔麵線", "豬血湯", "泡菜加量版", "古早味紅茶"] },
+  { name: "老先覺潭子頭家厝無名炒麵", cat: "人氣小吃", open: 6, close: 13, dishes: ["東泉炒麵", "綜合豬血湯", "隔間肉湯", "控肉飯", "油豆腐"] },
+  { name: "勝利路大腸包小腸（潭子車站）", cat: "人氣小吃", open: 15, close: 23, dishes: ["蒜味大腸包小腸", "九層塔香腸", "黑胡椒米腸", "烤甜不辣", "冬瓜檸檬"] },
+  { name: "潭子阿婆肉圓（中山路二段）", cat: "人氣小吃", open: 10, close: 19, dishes: ["古早味油炸肉圓", "四神湯", "貢丸湯", "綜合湯", "乾意麵"] },
+  { name: "潭子加工區紅燒牛肉麵（勝利路）", cat: "人氣小吃", open: 11, close: 21, dishes: ["招牌紅燒牛肉麵", "半筋半肉麵", "手工高麗菜水餃", "酸辣湯餃", "滷牛肚"] },
+  { name: "潭子爆汁小籠湯包（雅潭路）", cat: "人氣小吃", open: 6, close: 13, dishes: ["鮮肉小籠湯包", "絲瓜蝦仁湯包", "酸辣湯", "玉米濃湯", "冰豆漿"] },
+  { name: "頭家厝元氣飯糰（頭張路）", cat: "人氣小吃", open: 6, close: 10, dishes: ["雙蛋總匯飯糰", "紫米燒肉飯糰", "辣味菜脯飯糰", "現磨豆漿", "紅茶鮮奶"] },
+  { name: "潭子排骨酥麵（潭興路）", cat: "人氣小吃", open: 11, close: 21, dishes: ["招牌排骨酥麵", "芋頭排骨酥米粉", "肉燥乾麵", "滷筍乾", "燙地瓜葉"] },
+  { name: "潭子老牌當歸鴨麵線（勝利路）", cat: "人氣小吃", open: 16, close: 24, dishes: ["當歸鴨腿麵線", "鴨肉切盤", "鴨油拌飯", "下水湯", "米血糕"] },
+  { name: "潭秀黃昏市場古早味米糕", cat: "人氣小吃", open: 14, close: 19, dishes: ["筒仔米糕", "肉羹湯", "乾意麵", "滷鴨蛋", "隔間肉湯"] },
+  { name: "潭子古早味豆花（中山路）", cat: "人氣小吃", open: 12, close: 22, dishes: ["綜合嫩豆花", "花生湯圓豆花", "紅豆芋圓豆花", "黑糖刨冰", "綠豆薏仁湯"] },
+  { name: "頭張路水煎包（頭家厝商圈）", cat: "人氣小吃", open: 14, close: 19, dishes: ["高麗菜水煎包", "鮮肉水煎包", "韭菜盒", "蔥油餅", "紅茶豆漿"] },
+  { name: "潭子夜市現烤深海魷魚", cat: "人氣小吃", open: 17, close: 24, dishes: ["沙茶炭烤魷魚", "無骨鹹酥雞", "地瓜球", "炸雞排", "木瓜牛奶"] },
+  { name: "潭子鵝肉飯專賣（圓通南路）", cat: "人氣小吃", open: 11, close: 21, dishes: ["無骨鵝肉飯", "鹽水鵝肉切盤", "鵝油拌飯", "桂竹筍湯", "米血切盤"] },
+  { name: "勝利路古早味爌肉飯", cat: "人氣小吃", open: 6, close: 14, dishes: ["招牌三層爌肉飯", "腳庫飯", "滷白菜", "味噌豆腐湯", "荷包蛋"] },
+  { name: "潭子大腸蚵仔麵線（興華一路）", cat: "人氣小吃", open: 6, close: 14, dishes: ["綜合大腸蚵仔麵線", "肉羹麵線", "甜不辣", "肉圓", "冬瓜茶"] },
+  { name: "加工區上班族手作飯糰吧", cat: "人氣小吃", open: 6, close: 11, dishes: ["日式炙燒鮭魚飯糰", "照燒雞腿飯糰", "明太子玉子燒", "味增湯", "無糖綠茶"] },
+  { name: "潭子麻辣鴨血臭豆腐煲（勝利路）", cat: "人氣小吃", open: 16, close: 24, dishes: ["招牌麻辣鴨血臭豆腐", "大腸臭臭煲", "王子麵套餐", "老油條", "酸梅湯"] },
+  { name: "栗林車站古早味陽春麵", cat: "人氣小吃", open: 10, close: 20, dishes: ["麻醬乾麵", "餛飩湯", "滷味拼盤", "燙青菜", "紅油抄手"] },
+  { name: "潭子傳統蔥油餅（潭子國小旁）", cat: "人氣小吃", open: 14, close: 19, dishes: ["加蛋蔥油餅", "九層塔蛋餅", "豬肉餡餅", "蘿蔔絲餅", "冰紅茶"] },
+  { name: "新天地（潭子北屯交界特約會館）", cat: "台味合菜", open: 11, close: 21, dishes: ["波士頓龍蝦沙拉", "清蒸石斑魚", "德國豬腳", "鮑魚佛跳牆", "港式點心拼盤"] },
+  { name: "大鼎活蝦（潭子周邊聚餐名店）", cat: "台味合菜", open: 17, close: 24, dishes: ["招牌胡椒蝦", "檸檬蝦", "蒜頭蝦", "麻油蝦", "鳳梨苦瓜雞湯"] },
+  { name: "潭子海產熱炒總匯（中山路一段）", cat: "台味合菜", open: 17, close: 24, dishes: ["三杯中卷", "金沙杏鮑菇", "宮保雞丁", "鳳梨蝦球", "蛤蜊絲瓜"] },
+  { name: "頭家厝平價海產熱炒城", cat: "台味合菜", open: 17, close: 24, dishes: ["客家小炒", "薑絲大腸", "鐵板牛柳", "酥炸肥腸", "味噌鮮魚湯"] },
+  { name: "潭子新田登山步道土雞城", cat: "台味合菜", open: 11, close: 21, dishes: ["荔枝木桶仔烤雞", "鳳梨苦瓜雞湯", "炸溪蝦溪哥", "炒山蘇", "雞油拌飯"] },
+  { name: "潭子鵝肉海鮮熱炒城（雅潭路）", cat: "台味合菜", open: 11, close: 21, dishes: ["白切土鵝肉", "蒜泥白肉", "清炒水蓮", "酸菜白肉鍋", "炒海瓜子"] },
+  { name: "勝利路精緻台菜宴會館", cat: "台味合菜", open: 11, close: 21, dishes: ["東坡肉佐刈包", "蟹黃豆腐煲", "糖醋黃魚", "蒜炒水蓮", "干貝海鮮羹"] },
+  { name: "潭子台菜家常小館（圓通南路）", cat: "台味合菜", open: 11, close: 21, dishes: ["紅燒獅子頭", "蔥爆牛肉", "菜脯蛋", "五更腸旺", "芋頭排骨煲"] },
+  { name: "潭子活海鮮餐廳（環中東路）", cat: "台味合菜", open: 11, close: 21, dishes: ["避風塘炒蟹", "蒜蓉蒸大蝦", "麻油腰花", "炒山蘇", "砂鍋魚頭"] },
+  { name: "聚興山區窯烤雞合菜館", cat: "台味合菜", open: 11, close: 21, dishes: ["秘製黃金甕缸雞", "雞油悶桂竹筍", "鹹蛋苦瓜", "麻油松阪豬", "剝皮辣椒雞湯"] },
+  { name: "潭子庄腳菜合菜館（大豐路）", cat: "台味合菜", open: 11, close: 20, dishes: ["古早味封肉", "白斬放山雞", "梅干扣肉", "炒米粉", "苦瓜排骨湯"] },
+  { name: "頭張路家常合菜小廚", cat: "台味合菜", open: 11, close: 20, dishes: ["蔥油雞", "麻婆豆腐", "京醬肉絲", "炒高麗菜", "酸菜肚片湯"] },
+  { name: "潭子平價熱炒王（崇德路五段）", cat: "台味合菜", open: 17, close: 24, dishes: ["麻辣水煮牛", "鹽酥龍珠", "九層塔炒蛤蜊", "滑蛋蝦仁", "苦瓜鹹蛋"] },
+  { name: "潭子辦桌古早味合菜", cat: "台味合菜", open: 11, close: 21, dishes: ["古早味白菜滷", "八寶丸", "紅蟳米糕", "清蒸鱸魚", "魷魚螺肉蒜"] },
+  { name: "潭子聚餐合菜美食坊", cat: "台味合菜", open: 11, close: 21, dishes: ["招牌東坡肉", "蒜泥蒸草蝦", "三杯杏鮑菇", "鐵板豆腐", "酸菜白肉鍋"] },
+  { name: "潭子車站周邊海產熱炒", cat: "台味合菜", open: 17, close: 24, dishes: ["炒海瓜子", "烤秋刀魚", "椒鹽排骨", "空心菜炒牛肉", "蛤蜊湯"] },
+  { name: "雅潭路台味小廚", cat: "台味合菜", open: 11, close: 20, dishes: ["蔥油雞", "麻婆豆腐", "京醬肉絲", "炒高麗菜", "紫菜蛋花湯"] },
+  { name: "潭子山區景觀土雞城", cat: "台味合菜", open: 11, close: 21, dishes: ["桶仔烤全雞", "鳳梨苦瓜雞湯", "炸溪蝦", "炒龍鬚菜", "雞油拌飯"] },
+  { name: "慈濟醫院周邊家庭合菜小館", cat: "台味合菜", open: 11, close: 21, dishes: ["糖醋魚片", "宮保雞丁", "蟹黃豆腐煲", "蒜炒水蓮", "玉米排骨湯"] },
+  { name: "得天宮周邊古早味台菜餐廳", cat: "台味合菜", open: 11, close: 21, dishes: ["紅燒蹄膀", "白灼鮮蝦", "三杯雞", "炒水蓮", "酸菜肚片湯"] },
+  { name: "築間幸福鍋物（潭子勝利店）", cat: "鍋物燒烤", open: 11, close: 26, dishes: ["招牌石頭湯底", "美國濕式熟成牛五花", "松阪豬肉鍋", "海鮮總匯鍋", "明治冰淇淋自助吧"] },
+  { name: "肉多多火鍋（潭子北屯交界特約店）", cat: "鍋物燒烤", open: 11, close: 26, dishes: ["爆炒川府麻辣湯", "超大肉盤暴龍級", "活力梅花豬", "無骨鮮嫩雞腿", "蔬食自助吧"] },
+  { name: "十二段鍋物堂（潭子特約店）", cat: "鍋物燒烤", open: 11, close: 24, dishes: ["極上和牛海陸鍋", "剝皮辣椒雞鍋", "麻辣牛奶鍋", "手作花枝漿", "霜淇淋無限享用"] },
+  { name: "石二鍋（潭子中山店）", cat: "鍋物燒烤", open: 11, close: 22, dishes: ["爆香石頭鍋", "愛呷肉雪花牛", "上選豬肉鍋", "檸檬冬瓜冰沙", "百頁魚豆腐"] },
+  { name: "老先覺功夫窯燒鍋（潭子勝利店）", cat: "鍋物燒烤", open: 11, close: 22, dishes: ["招牌麻辣窯燒鍋", "厚實龍骨鍋", "酒釀鮮茄鍋", "老油條", "滷鴨血豆腐"] },
+  { name: "三媽臭臭鍋（潭子勝利店）", cat: "鍋物燒烤", open: 11, close: 23, dishes: ["經典大腸臭臭鍋", "海鮮豆腐鍋", "泡菜鍋", "麻辣鴨血", "白飯飲料無限"] },
+  { name: "潭子碳佐燒肉工坊（中山路）", cat: "鍋物燒烤", open: 17, close: 24, dishes: ["安格斯牛小排", "厚切牛舌", "伊比利豬梅花", "明太子山藥", "雞湯無限喝"] },
+  { name: "牛角日本燒肉專門店（潭子周邊店）", cat: "鍋物燒烤", open: 11, close: 22, dishes: ["牛角招牌腹胸肉", "王樣橫膈膜", "蒜香奶油菲力", "牛角招牌涼豆腐", "黃豆粉冰淇淋"] },
+  { name: "潭子霸味薑母鴨（中山路一段）", cat: "鍋物燒烤", open: 16, close: 25, dishes: ["炭火老薑母鴨", "鴨肉丸", "麻油麵線", "高麗菜", "凍豆腐與豆皮"] },
+  { name: "帝王食補（潭子中山店）", cat: "鍋物燒烤", open: 16, close: 24, dishes: ["紅面薑母鴨", "烏蔘雞鍋", "黃金麵線", "鴨血糕", "陳香麵線"] },
+  { name: "養鍋 Yang Guo 石頭涮涮鍋（潭子店）", cat: "鍋物燒烤", open: 11, close: 22, dishes: ["山藥牛奶湯底", "小農鮮嫩雞柳", "手打花枝滑", "黑滷飯", "霜淇淋"] },
+  { name: "潭子串燒居酒屋（勝利路）", cat: "鍋物燒烤", open: 17, close: 25, dishes: ["明太子雞肉串", "鹽烤牛肋條", "醬燒豬五花番茄捲", "午仔魚一夜干", "生啤酒"] },
+  { name: "億品鍋（潭子勝利店）", cat: "鍋物燒烤", open: 11, close: 23, dishes: ["起司牛奶鍋", "藥膳養生鍋", "韓式泡菜鍋", "豬油拌飯吃到飽", "涼麵與爆米花"] },
+  { name: "潭子韓式銅盤烤肉（頭張路）", cat: "鍋物燒烤", open: 11, close: 21, dishes: ["秘製醃牛五花銅盤", "春川辣炒雞", "海鮮煎餅", "韓式炸雞", "石鍋拌飯"] },
+  { name: "潭子蒙古烤肉吃到飽（雅潭路）", cat: "鍋物燒烤", open: 11, close: 21, dishes: ["現炒沙朗牛肉", "特調沙茶醬羊肉", "燒餅夾肉", "酸菜白肉火鍋", "水果甜點吧"] },
+  { name: "頭家厝炭烤串燒王", cat: "鍋物燒烤", open: 17, close: 25, dishes: ["秘醬烤雞腿排", "炭烤甜不辣", "培根蔥肉捲", "烤香菇", "烤豆干"] },
+  { name: "潭子羊肉爐總店（中山路二段）", cat: "鍋物燒烤", open: 16, close: 25, dishes: ["帶皮羊肉爐", "羊大骨髓", "麻油麵線", "茼蒿菜", "腐乳沾醬"] },
+  { name: "勝利路平價鐵板燒", cat: "鍋物燒烤", open: 11, close: 21, dishes: ["黑胡椒沙朗牛排", "香蒜雞腿排", "蔥爆豬肉", "鐵板鮮蚵", "高麗菜豆芽菜雙拼"] },
+  { name: "潭子石頭火鍋城（潭興路）", cat: "鍋物燒烤", open: 11, close: 23, dishes: ["現炒麻油洋蔥湯底", "沙朗牛肉盤", "手工蛋餃", "排骨酥", "沙茶特調醬"] },
+  { name: "潭子鴛鴦麻辣鍋（圓通南路）", cat: "鍋物燒烤", open: 11, close: 24, dishes: ["重慶牛油麻辣湯", "招牌滷大腸頭", "手打蝦滑", "老油條", "酸梅湯無限暢飲"] },
+  { name: "勝利路日式豚骨拉麵屋", cat: "異國美饌", open: 11, close: 21, dishes: ["濃厚豚骨叉燒拉麵", "地獄麻辣拉麵", "唐揚炸雞塊", "日式煎餃", "溏心蛋"] },
+  { name: "潭子泰式料理（瓦城風格泰菜館）", cat: "異國美饌", open: 11, close: 21, dishes: ["原味月亮蝦餅", "檸檬清蒸魚", "綠咖哩椰汁雞", "辣炒打拋豬", "摩摩喳喳"] },
+  { name: "薩莉亞義式餐廳（潭子周邊店）", cat: "異國美饌", open: 11, close: 22, dishes: ["米蘭風肉醬焗飯", "瑪格麗特披薩", "香烤辣味雞翅", "青醬蛤蜊義大利麵", "飲料吧暢飲"] },
+  { name: "潭子韓式料理（頭家厝商圈）", cat: "異國美饌", open: 11, close: 21, dishes: ["部隊鍋", "韓式炸醬麵", "起司辣炒年糕", "海鮮豆腐鍋", "韓式小菜拼盤"] },
+  { name: "頭家厝美式漢堡餐廳", cat: "異國美饌", open: 11, close: 21, dishes: ["花生醬培根牛肉堡", "雙層起司手打牛堡", "脆薯拼盤", "水牛城辣雞翅", "香草奶昔"] },
+  { name: "潭子越式河粉專賣（中山路）", cat: "異國美饌", open: 10, close: 20, dishes: ["生熟牛肉河粉", "越式炸春捲", "涼拌木瓜絲", "法國麵包夾烤肉", "越式滴漏咖啡"] },
+  { name: "潭子義式窯烤披薩（圓通南路）", cat: "異國美饌", open: 11, close: 21, dishes: ["夏威夷海鮮披薩", "松露野菇燉飯", "奶油培根蛋黃麵", "凱撒沙拉", "提拉米蘇"] },
+  { name: "潭子日式厚切豬排專賣（勝利路）", cat: "異國美饌", open: 11, close: 21, dishes: ["厚切腰內豬排定食", "起司豬排咖哩", "炸蝦天婦羅", "高麗菜絲無限續", "味噌湯"] },
+  { name: "潭子印度咖哩小館（頭張路）", cat: "異國美饌", open: 11, close: 21, dishes: ["奶油雞肉咖哩", "蒜味烤餅", "坦都里烤雞", "羊肉香料飯", "印度拉茶"] },
+  { name: "勝利路日式定食專門店", cat: "異國美饌", open: 11, close: 21, dishes: ["塩烤鯖魚定食", "日式唐揚雞定食", "壽喜燒牛肉鍋", "茶碗蒸", "味噌湯"] },
+  { name: "潭子港式茶餐廳（勝利路）", cat: "異國美饌", open: 11, close: 21, dishes: ["冰火菠蘿油", "臘味煲仔飯", "鮮蝦雲吞撈麵", "絲襪奶茶", "楊枝甘露"] },
+  { name: "中山路南洋叻沙麵館", cat: "異國美饌", open: 11, close: 20, dishes: ["檳城海鮮叻沙麵", "海南雞飯", "肉骨茶湯", "咖椰吐司", "美祿恐龍"] },
+  { name: "潭子歐風牛排館（雅潭路）", cat: "異國美饌", open: 11, close: 22, dishes: ["厚切菲力牛排", "香煎鱈魚排", "酥皮濃湯", "蒜香餐包", "沙拉吧吃到飽"] },
+  { name: "潭子日式壽司專賣（頭張路）", cat: "異國美饌", open: 11, close: 21, dishes: ["炙燒鮭魚握壽司", "綜合花壽司", "鰻魚丼飯", "炸蝦手捲", "土瓶蒸"] },
+  { name: "加工區周邊墨西哥捲餅吧", cat: "異國美饌", open: 11, close: 21, dishes: ["經典牛肉塔可餅", "起司雞肉烤餅", "酪梨莎莎玉米片", "墨西哥辣肉醬飯", "檸檬氣泡飲"] },
+  { name: "潭子韓式炸雞外帶專賣（勝利路）", cat: "異國美饌", open: 15, close: 23, dishes: ["洋釀甜辣無骨炸雞", "蜂蜜蒜味炸雞", "起司球", "韓式魚板湯", "水梨汁"] },
+  { name: "潭子義式小餐館（慈濟醫院旁）", cat: "異國美饌", open: 11, close: 21, dishes: ["蒜香白酒蛤蜊麵", "青醬嫩雞燉飯", "酥炸花枝圈", "南瓜濃湯", "焦糖烤布蕾"] },
+  { name: "潭子泰式打拋豬專賣（潭興路）", cat: "異國美饌", open: 11, close: 20, dishes: ["招牌打拋豬肉飯", "泰式椒麻雞飯", "紅咖哩牛肉飯", "涼拌青木瓜", "泰式奶茶"] },
+  { name: "頭家厝美式炭烤肋排餐酒館", cat: "異國美饌", open: 17, close: 24, dishes: ["煙燻豬肋排", "水牛城辣雞翅", "松露薯條", "起司牛肉漢堡", "精釀生啤酒"] },
+  { name: "潭子日式咖哩蛋包飯（勝利店）", cat: "異國美饌", open: 11, close: 21, dishes: ["滑蛋炸豬排咖哩飯", "唐揚雞歐姆蛋包飯", "可樂餅", "和風沙拉", "味增湯"] },
+  { name: "路易莎咖啡（潭子勝利門市）", cat: "咖啡午茶", open: 7, close: 21, dishes: ["莊園級美式咖啡", "小農雪點鮮奶茶", "磚壓三明治", "墨西哥辣牛堡", "慢熟乳酪蛋糕"] },
+  { name: "星巴克（潭子中山門市）", cat: "咖啡午茶", open: 7, close: 22, dishes: ["焦糖瑪奇朵", "那堤咖啡", "抹茶奶霜星冰樂", "起司牛肉可頌", "紐約起司蛋糕"] },
+  { name: "多那之咖啡蛋糕烘焙（潭子勝利店）", cat: "咖啡午茶", open: 7, close: 24, dishes: ["招牌冰拿鐵", "海鹽羅宋麵包", "芋泥波士頓派", "提拉米蘇杯", "水果千層蛋糕"] },
+  { name: "85度C（潭子中山店）", cat: "咖啡午茶", open: 7, close: 23, dishes: ["招牌海岩咖啡", "黑糖珍珠鮮奶", "波士頓蛋糕", "北海道牛奶捲", "金沙蛋黃酥"] },
+  { name: "潭子老宅手作甜點咖啡（潭興路）", cat: "咖啡午茶", open: 12, close: 20, dishes: ["法式栗子蒙布朗", "小山園抹茶千層", "手沖單品耶加雪菲", "巴斯克乳酪蛋糕", "伯爵鮮奶茶"] },
+  { name: "潭子早午餐廚房（頭張路）", cat: "咖啡午茶", open: 7, close: 15, dishes: ["經典美式大拼盤", "花生培根厚牛堡", "明太子法式吐司", "脆薯與雞塊", "紅茶拿鐵"] },
+  { name: "潭子文青豆花甜品店（勝利路）", cat: "咖啡午茶", open: 12, close: 22, dishes: ["黑糖粉粿嫩豆花", "抹茶紅豆白玉冰", "紫米芋頭甜湯", "手工燒仙草", "冬瓜檸檬"] },
+  { name: "潭子手作可頌烘焙坊（圓通南路）", cat: "咖啡午茶", open: 11, close: 20, dishes: ["法國奶油原味可頌", "開心果卡士達可頌", "肉桂捲", "海鹽奶油捲", "冰美式咖啡"] },
+  { name: "潭子舒芙蕾鬆餅屋（頭家厝商圈）", cat: "咖啡午茶", open: 11, close: 20, dishes: ["經典原味厚鬆餅", "草莓冰淇淋舒芙蕾", "珍珠奶茶鬆餅", "水果茶", "焦糖海鹽拿鐵"] },
+  { name: "潭子傳統古早味紅茶冰（雅潭路）", cat: "咖啡午茶", open: 8, close: 22, dishes: ["決明子古早味紅茶", "冬瓜鮮奶", "綠豆沙牛奶", "檸檬愛玉", "仙草凍奶茶"] },
+  { name: "潭子手作千層蛋糕工坊（大豐區）", cat: "咖啡午茶", open: 12, close: 19, dishes: ["綜合水果千層", "濃醇巧克力千層", "伯爵茶香千層", "檸檬塔", "桂花烏龍冷泡茶"] },
+  { name: "潭子精品手沖咖啡館（新田景觀區）", cat: "咖啡午茶", open: 10, close: 19, dishes: ["藝伎手沖咖啡", "西西里檸檬咖啡", "肉桂蘋果派", "司康佐鮮奶油", "燕麥奶拿鐵"] },
+  { name: "加工區車輪餅與雞蛋糕小舖", cat: "咖啡午茶", open: 14, close: 19, dishes: ["爆漿奶油車輪餅", "萬丹紅豆餅", "起司牽絲雞蛋糕", "卡士達脆皮雞蛋糕", "古早味冬瓜茶"] },
+  { name: "頭家厝網美早午餐（得天街）", cat: "咖啡午茶", open: 8, close: 16, dishes: ["煙燻鮭魚班尼迪克蛋", "松露野菇歐姆蛋", "酸種麵包酪梨盤", "黑糖拿鐵", "鮮榨柳橙汁"] },
+  { name: "潭子深夜甜點吧（勝利路）", cat: "咖啡午茶", open: 16, close: 24, dishes: ["焦糖烤布丁", "提拉米蘇", "大人味蘭姆葡萄夾心", "鍋煮香料奶茶", "無咖啡因花草茶"] }
+];
+let currentCat = 'ALL';
+let lastResultText = '';
+
+function isOpenNow(r) {
+  const h = new Date().getHours();
+  if (r.close > 24) return (h >= r.open || h < (r.close - 24));
+  return (h >= r.open && h < r.close);
+}
+
+function getPool() {
+  const onlyOpen = document.getElementById('onlyOpen').checked;
+  return restaurants.filter(r => {
+    const catMatch = (currentCat === 'ALL' || r.cat === currentCat);
+    const openMatch = (!onlyOpen || isOpenNow(r));
+    return catMatch && openMatch;
+  });
+}
+
+function updateCount() {
+  document.getElementById('poolCount').innerText = '目前轉輪池：' + getPool().length + ' 家店';
+}
+
+function setCat(cat, btn) {
+  currentCat = cat;
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  updateCount();
+}
+
+document.getElementById('onlyOpen').addEventListener('change', updateCount);
+updateCount();
+
+function spinSlot() {
+  const pool = getPool();
+  if (pool.length === 0) {
+    alert('目前該分類沒有正在營業的店家，請取消勾選「僅抽目前營業中」再轉一次！');
+    return;
+  }
+  const btn = document.getElementById('spinBtn');
+  btn.disabled = true;
+  btn.innerText = '🎰 潭子美食轉動中...';
+  document.getElementById('resPanel').style.display = 'none';
+
+  const winner = pool[Math.floor(Math.random() * pool.length)];
+  const winDish = winner.dishes[Math.floor(Math.random() * winner.dishes.length)];
+  let count = 0;
+  const timer = setInterval(() => {
+    count++;
+    const randR = pool[Math.floor(Math.random() * pool.length)];
+    const randD = randR.dishes[Math.floor(Math.random() * randR.dishes.length)];
+    document.getElementById('rCat').innerText = randR.cat;
+    document.getElementById('rShop').innerText = randR.name;
+    document.getElementById('rDish').innerText = randD;
+
+    if (count >= 18) {
+      clearInterval(timer);
+      document.getElementById('rCat').innerText = winner.cat;
+      document.getElementById('rShop').innerText = winner.name;
+      document.getElementById('rDish').innerText = winDish;
+
+      document.getElementById('resShop').innerText = '🏆 ' + winner.name;
+      document.getElementById('resDish').innerText = '🔥 招牌必點：' + winDish;
+      const closeTxt = winner.close > 24 ? ('凌晨 ' + (winner.close - 24) + ':00') : (winner.close + ':00');
+      document.getElementById('resMeta').innerText = '分類：' + winner.cat + '｜參考營業：' + winner.open + ':00 - ' + closeTxt;
+      document.getElementById('resMenu').innerText = '本店五大招牌菜：' + winner.dishes.join('、');
+      document.getElementById('resMap').href = 'https://google.com' + encodeURIComponent('台中市潭子區 ' + winner.name);
+      lastResultText = '🎰 我剛剛用【SpinLife 轉生活・潭子百大美食拉霸機】抽中了「' + winner.name + '」的招牌菜【' + winDish + '】！走吧出發去吃！';
+      document.getElementById('resPanel').style.display = 'block';
+      btn.disabled = false;
+      btn.innerText = '🎰 再轉一次・潭子吃什麼！';
+    }
+  }, 75);
+}
+
+function copyShare() {
+  if (navigator.clipboard && lastResultText) {
+    navigator.clipboard.writeText(lastResultText).then(() => alert('✅ 已複製戰果文字，快貼到 LINE 群組揪朋友吧！'));
+  }
+}
+</script>
+</body>
+</html>
