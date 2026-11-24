@@ -93,6 +93,32 @@ let prizes = [
 ];
 
 let isSpinning = false;
+let audioCtx = null;
+
+function playBeep(freq, type, duration, vol) {
+  try {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = type || 'sine';
+    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+    gain.gain.setValueAtTime(vol || 0.15, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + duration);
+  } catch (e) {}
+}
+
+function playWinFanfare() {
+  const notes = [523.25, 659.25, 783.99, 1046.50, 783.99, 1046.50];
+  notes.forEach((f, idx) => {
+    setTimeout(() => playBeep(f, 'triangle', 0.22, 0.22), idx * 95);
+  });
+}
+
 setInterval(() => {
   const n = new Date();
   const pad = v => v < 10 ? "0" + v : "" + v;
@@ -136,6 +162,7 @@ function pickWeightedPrize() {
 function startSpin() {
   if (isSpinning) return;
   isSpinning = true;
+  playBeep(440, 'square', 0.08, 0.12);
   document.getElementById("spinBtn").disabled = true;
   document.getElementById("spinBtn").innerText = "🎰 好運轉動中...";
   document.getElementById("resultCard").style.display = "none";
@@ -145,6 +172,7 @@ function startSpin() {
   const maxTicks = 22;
   const timer = setInterval(() => {
     ticks++;
+    playBeep(320 + (ticks % 4) * 65, 'triangle', 0.06, 0.12);
     for (let r = 1; r <= 3; r++) {
       const randItem = prizes[Math.floor(Math.random() * prizes.length)];
       document.getElementById("icon" + r).innerText = randItem.icon;
@@ -156,6 +184,7 @@ function startSpin() {
         document.getElementById("icon" + r).innerText = winner.icon;
         document.getElementById("txt" + r).innerText = winner.short;
       }
+      playWinFanfare();
       document.getElementById("resPrizeText").innerText = winner.full;
       document.getElementById("resultCard").style.display = "block";
       document.getElementById("spinBtn").innerText = "🔒 請店員確認折扣後重置";
@@ -172,6 +201,5 @@ function resetMachine() {
   document.getElementById("icon2").innerText = "🎰"; document.getElementById("txt2").innerText = "祝您中大獎";
   document.getElementById("icon3").innerText = "✨"; document.getElementById("txt3").innerText = "好運連連";
 }
-</script>
 </body>
 </html>
