@@ -3,142 +3,194 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SpinLife 轉生活創意行銷｜全台中八大戰區招商簡報 2.0</title>
+<title>SpinLife 轉生活｜大台中 14 區 1,400 家名店・創業與招商簡報 3.0</title>
 <style>
   * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Microsoft JhengHei", sans-serif; }
-  body { margin: 0; background: #0f1021; color: #fff; overflow-x: hidden; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
-  .nav-top { width: 100%; max-width: 720px; display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: rgba(0,0,0,0.4); border-bottom: 1px solid rgba(255,215,0,0.25); }
-  .btn-home { background: #ffd700; color: #1a1a2e; font-size: 12px; font-weight: 900; padding: 6px 12px; border-radius: 20px; text-decoration: none; }
-  .page-ind { font-size: 13px; font-weight: bold; color: #ffd700; }
-  .deck-wrap { width: 100%; max-width: 720px; padding: 16px; flex: 1; display: flex; align-items: center; justify-content: center; }
-  .slide { display: none; width: 100%; background: linear-gradient(145deg, #1a1a2e, #16213e); border: 2px solid #ffd700; border-radius: 20px; padding: 24px 20px; box-shadow: 0 12px 32px rgba(0,0,0,0.6); animation: fadeIn 0.3s ease; }
-  .slide.active { display: block; }
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-  .tag { display: inline-block; background: rgba(255,215,0,0.18); border: 1px solid #ffd700; color: #ffd700; font-size: 11px; font-weight: bold; padding: 4px 12px; border-radius: 16px; margin-bottom: 10px; }
-  h2 { margin: 0 0 12px; font-size: 22px; color: #ffd700; line-height: 1.35; }
-  p { font-size: 14px; color: #d0d8ee; line-height: 1.65; margin: 0 0 12px; }
-  .box-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0; }
-  .stat-card { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,215,0,0.3); border-radius: 12px; padding: 12px; text-align: center; }
-  .stat-num { font-size: 22px; font-weight: 900; color: #ffd700; }
-  .stat-lbl { font-size: 11px; color: #b8c2dc; margin-top: 4px; }
-  .list-item { background: rgba(0,0,0,0.28); border-left: 4px solid #ffd700; padding: 10px 12px; border-radius: 8px; margin-bottom: 8px; font-size: 13px; color: #eef2ff; }
-  .controls { width: 100%; max-width: 720px; display: flex; justify-content: space-between; padding: 12px 16px 24px; gap: 12px; }
-  .btn-ctrl { flex: 1; padding: 12px; border: none; border-radius: 30px; font-size: 15px; font-weight: 900; cursor: pointer; }
-  .btn-prev { background: rgba(255,255,255,0.15); color: #fff; }
-  .btn-next { background: linear-gradient(90deg, #ffd700, #f59f00); color: #1a1a2e; }
-  .btn-demo { display: block; text-align: center; background: linear-gradient(90deg, #00b894, #009432); color: #fff; text-decoration: none; font-size: 15px; font-weight: 900; padding: 13px; border-radius: 30px; margin-top: 12px; box-shadow: 0 4px 14px rgba(0,184,148,0.45); }
+  body { margin: 0; padding: 0 0 60px; background: #0d101d; color: #f1f3f5; line-height: 1.6; }
+  .nav-bar { position: sticky; top: 0; z-index: 99; background: rgba(13, 16, 29, 0.94); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255, 215, 0, 0.3); padding: 10px 16px; display: flex; justify-content: space-between; align-items: center; }
+  .btn-back { background: #ffd700; color: #1a1a2e; font-size: 12px; font-weight: 900; padding: 6px 14px; border-radius: 20px; text-decoration: none; }
+  .nav-tag { font-size: 12px; color: #ffd700; font-weight: bold; }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 14px; }
+  .hero { text-align: center; padding: 36px 18px; background: radial-gradient(circle at top, #262f52 0%, #121629 100%); border: 2px solid #ffd700; border-radius: 24px; margin-bottom: 24px; box-shadow: 0 12px 36px rgba(0,0,0,0.6); }
+  .badge { display: inline-block; background: rgba(233, 69, 96, 0.25); border: 1px solid #e94560; color: #ff8787; font-size: 12px; font-weight: 900; padding: 4px 14px; border-radius: 20px; margin-bottom: 12px; }
+  .hero h1 { margin: 0 0 10px; font-size: 28px; color: #ffd700; line-height: 1.3; text-shadow: 0 2px 12px rgba(255,215,0,0.35); }
+  .hero p { margin: 0 auto 20px; max-width: 680px; font-size: 15px; color: #ced4da; }
+  .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 680px; margin: 0 auto; }
+  .stat-card { background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 215, 0, 0.4); border-radius: 14px; padding: 14px 8px; }
+  .stat-num { font-size: 26px; font-weight: 900; color: #ffd700; line-height: 1.1; }
+  .stat-lbl { font-size: 12px; color: #adb5bd; margin-top: 4px; }
+  .section { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 20px; padding: 24px 18px; margin-bottom: 22px; }
+  .sec-title { margin: 0 0 6px; font-size: 21px; color: #ffd700; display: flex; align-items: center; gap: 8px; }
+  .sec-sub { margin: 0 0 18px; font-size: 13px; color: #adb5bd; }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .card { background: #161b30; border: 1px solid rgba(255, 215, 0, 0.28); border-radius: 14px; padding: 16px; }
+  .card h3 { margin: 0 0 8px; font-size: 16px; color: #ffe066; }
+  .card p, .card li { margin: 0; font-size: 13px; color: #dee2e6; }
+  .card ul { padding-left: 18px; margin: 6px 0 0; }
+  .zone-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .z-tag { background: rgba(255, 215, 0, 0.14); border: 1px solid rgba(255, 215, 0, 0.45); color: #ffe066; font-size: 12px; font-weight: bold; padding: 4px 10px; border-radius: 12px; }
+  .calc-box { background: linear-gradient(135deg, #1f2747, #14182b); border: 2px solid #00b894; border-radius: 16px; padding: 18px; }
+  .calc-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 12px; font-size: 14px; }
+  .calc-row input { width: 130px; padding: 8px 10px; border-radius: 8px; border: 1px solid #ffd700; background: #0d101d; color: #ffd700; font-size: 16px; font-weight: 900; text-align: center; }
+  .calc-res { background: rgba(0, 184, 148, 0.15); border: 1px solid #00b894; border-radius: 12px; padding: 12px; font-size: 14px; color: #fff; }
+  .highlight-red { color: #ff6b6b; font-weight: 900; font-size: 17px; }
+  .highlight-green { color: #51cf66; font-weight: 900; font-size: 18px; }
+  .cta-box { text-align: center; background: linear-gradient(135deg, #2b1f08, #1a1a2e); border: 2px solid #ffd700; border-radius: 20px; padding: 26px 16px; }
+  .cta-btns { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+  .btn-gold { background: linear-gradient(90deg, #ffe066, #f59f00); color: #1a1a2e; font-size: 15px; font-weight: 900; padding: 12px 24px; border-radius: 30px; text-decoration: none; border: none; cursor: pointer; }
+  .btn-line { background: #06c755; color: #fff; font-size: 15px; font-weight: 900; padding: 12px 24px; border-radius: 30px; text-decoration: none; border: none; cursor: pointer; }
+  @media (max-width: 720px) {
+    .hero h1 { font-size: 22px; }
+    .stats-grid, .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
-<div class="nav-top">
-  <a class="btn-home" href="../../index.html">🏠 回總部大廳</a>
-  <span class="page-ind" id="pageInd">第 1 / 11 頁</span>
+<div class="nav-bar">
+  <a class="btn-back" href="../../index.html">🏠 返回 SpinLife 總部大廳</a>
+  <span class="nav-tag">👑 2026 旗艦版 3.0｜官方招商與合夥簡報</span>
 </div>
-<div class="deck-wrap">
-  <div class="slide active">
-    <span class="tag">🎰 SpinLife 轉生活創意行銷廣告公司</span>
-    <h2>用遊戲化拉霸機，把全台中「選擇困難」的客人直接導進您的店！</h2>
-    <p>現代人每天三餐宵夜都在問「等一下吃什麼？」。我們將決策變成好玩、刺激的三軸拉霸機，讓消費者轉出美食的瞬間，一鍵開啟 Google 地圖導航到店消費。</p>
-    <div class="box-grid">
-      <div class="stat-card"><div class="stat-num">8 大戰區</div><div class="stat-lbl">原台中市全區全線營運</div></div>
-      <div class="stat-card"><div class="stat-num">800 家店</div><div class="stat-lbl">4,000 道招牌菜色收錄</div></div>
+
+<div class="container">
+  <div class="hero">
+    <div class="badge">🔥 終結「今天吃什麼？」選擇困難症｜大台中最大美食決策入口</div>
+    <h1>SpinLife 轉生活・百大美食拉霸機<br>讓全台中吃貨「一轉就上門」的零抽成導客引擎</h1>
+    <p>我們不抽成、不綁約、不賺外送差價！透過遊戲化拉霸互動與 Google 地圖一鍵導航，把滑手機猶豫的在地客群，直接導進您的店門口！</p>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-num">14 大戰區</div><div class="stat-lbl">橫跨大台中 85% 人口核心</div></div>
+      <div class="stat-card"><div class="stat-num">1,400 家</div><div class="stat-lbl">精選在地口碑名店收錄</div></div>
+      <div class="stat-card"><div class="stat-num">7,000 道</div><div class="stat-lbl">真實招牌菜色精準推薦</div></div>
     </div>
   </div>
-  <div class="slide">
-    <span class="tag">📊 商業痛點洞察</span>
-    <h2>為什麼傳統發傳單、買團購券越來越難賺錢？</h2>
-    <div class="list-item">❌ <b>傳統發傳單</b>：印製成本高、路人隨手丟垃圾桶，完全無法追蹤成效。</div>
-    <div class="list-item">❌ <b>外送與團購平台</b>：抽成高達 25%～35%，老闆辛苦做白工，客人只認平台不認店。</div>
-    <div class="list-item">✅ <b>SpinLife 轉生活解方</b>：零抽成！透過趣味遊戲與社群自動引流，直接把高意願客人導到店門口。</div>
+
+  <div class="section">
+    <h2 class="sec-title">🗺️ 一、大台中 14 大核心生活圈・全面竣工版圖</h2>
+    <p class="sec-sub">每一區皆獨立建置「百大美食拉霸機」，內建營業時間智慧過濾（打烊不空轉），精準鎖定各區在地住戶、學生與上班族！</p>
+    <div class="grid-2">
+      <div class="card">
+        <h3>🏙️ 原台中市 8 大核心都會區（800 家名店）</h3>
+        <p>高消費力、觀光客與上班族最密集的黃金商業心臟：</p>
+        <div class="zone-tags">
+          <span class="z-tag">01. 北屯區</span><span class="z-tag">02. 西屯區</span><span class="z-tag">03. 南屯區</span><span class="z-tag">04. 北區</span>
+          <span class="z-tag">05. 西區</span><span class="z-tag">06. 中區</span><span class="z-tag">07. 東區</span><span class="z-tag">08. 南區</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>🚀 屯區・山線・海線 6 大人口重鎮（600 家名店）</h3>
+        <p>高居住人口、工業區、高鐵門戶與大學城剛性三餐戰區：</p>
+        <div class="zone-tags">
+          <span class="z-tag">09. 大里區</span><span class="z-tag">10. 太平區</span><span class="z-tag">11. 豐原區</span>
+          <span class="z-tag">12. 沙鹿區</span><span class="z-tag">13. 烏日區</span><span class="z-tag">14. 潭子區</span>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="slide">
-    <span class="tag">🗺️ 營運版圖實績</span>
-    <h2>原台中市全部 8 大行政區・100% 完成上線營運</h2>
-    <p>目前已完成<strong>北屯、西屯、南屯、北區、西區、中區、東區、南區</strong>八大核心生活圈建置，覆蓋逢甲、一中、勤美、公益路、崇德、LaLaport 與忠孝夜市：</p>
-    <div class="list-item">🎰 <b>智能過濾營業時間</b>：自動排除已打烊店家，確保玩家轉中就能立刻出發吃得到。</div>
-    <div class="list-item">📍 <b>一鍵 Google 地圖導航</b>：中獎畫面直連店家地標與 5 道招牌必點菜色推薦。</div>
+
+  <div class="section">
+    <h2 class="sec-title">🎯 二、為什麼餐飲老闆搶著進駐「SpinLife 轉生活」？</h2>
+    <p class="sec-sub">傳統外送平台抽成高達 32%～38%，做越多越累；SpinLife 幫老闆用「極低固定年費」換取全年無休的精準線下客流！</p>
+    <div class="grid-3">
+      <div class="card">
+        <h3>👑 武器 1：左右 10 格黃金 VIP 看板</h3>
+        <ul>
+          <li>手機、電腦同屏鎖定拉霸機兩側最顯眼位置</li>
+          <li>點擊直接跳轉 Google 地圖導航、IG 或訂位頁</li>
+          <li><strong>每區僅限 10 席</strong>，搶先卡位壟斷同業曝光</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🎰 武器 2：五大招牌菜精準鎖定推薦</h3>
+        <ul>
+          <li>轉輪池轉中貴店時，同步亮出<strong>「本店五大招牌必點」</strong></li>
+          <li>直接替客人決定點什麼，大幅提高客單價</li>
+          <li>內建 LINE 戰果一鍵複製分享，客人主動幫您揪團</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🎁 武器 3：專屬「櫃檯結帳拉霸機」</h3>
+        <ul>
+          <li>為特約店家免費客製專屬 QR Code 結帳轉盤</li>
+          <li>客人結帳掃碼轉折扣／小菜，<strong>主動留下五星好評</strong></li>
+          <li>把一次性的過路客變成高回購率鐵粉</li>
+        </ul>
+      </div>
+    </div>
   </div>
-  <div class="slide">
-    <span class="tag">🚀 全自動流量引擎</span>
-    <h2>24 小時社群自動推播 × 年輕族群精準導流</h2>
-    <div class="list-item">📱 <b>免下載即點即玩</b>：網頁版秒開，支援 LINE 群組一鍵分享戰果揪友聚餐。</div>
-    <div class="list-item">🔥 <b>Threads 與在地社群自動化引流</b>：鎖定每天午晚餐與宵夜飢餓時段自動推播，精準觸及台中大學生與上班族。</div>
-    <div class="list-item">🏢 <b>六大生活展館矩陣</b>：以「食」為核心引擎，串聯衣、住、行、育、樂全方位本地消費圈。</div>
+
+  <div class="section">
+    <h2 class="sec-title">💰 三、現場試算：一年幫老闆省下多少「外送抽成血汗錢」？</h2>
+    <p class="sec-sub">輸入貴店平均每月透過外送平台接單的營業額，立刻算出 SpinLife 如何幫您把抽成利潤全部留進自己口袋！</p>
+    <div class="calc-box">
+      <div class="calc-row">
+        <span>貴店每月外送平台營業額：新台幣</span>
+        <input type="number" id="revInput" value="100000" step="10000" oninput="calcSave()">
+        <span>元（以平均抽成 35% 計算）</span>
+      </div>
+      <div class="calc-res" id="calcOut">
+        💸 每年白白送給外送平台的抽成高達：<span class="highlight-red">420,000 元</span>！<br>
+        ✅ 加入 <strong>SpinLife 轉生活（零抽成導客）</strong>，只要成功把 20% 客人轉為線下自取／內用，每年直接多賺回：<span class="highlight-green">+84,000 元純利潤</span>！
+      </div>
+    </div>
   </div>
-  <div class="slide">
-    <span class="tag">👑 創始 VIP 店家特權</span>
-    <h2>為什麼老闆一定要搶佔「創始 VIP 席位」？</h2>
-    <p>每區、每個餐飲分類僅收錄 20 家代表性店家，其中<strong>創始 VIP 席位</strong>享有三大獨家霸權：</p>
-    <div class="list-item">⚡ <b>3 倍超高轉出權重</b>：玩家按下拉霸機時，VIP 合作店家的中獎機率為一般店家的 300%！</div>
-    <div class="list-item">🖼️ <b>黃金兩側廣告看板</b>：拉霸機左右兩側 10 格黃金視覺看板專屬曝光，點擊直達本店地圖。</div>
+
+  <div class="section">
+    <h2 class="sec-title">🤝 四、創始店家「先賺錢・零風險」限量合作方案</h2>
+    <p class="sec-sub">為慶祝大台中 14 大戰區（1,400 家名店）全面上線，每區開放前 10 家創始特約名店享有專屬禮遇：</p>
+    <div class="grid-3">
+      <div class="card">
+        <h3>🥉 方案 A｜百大精選席位</h3>
+        <ul>
+          <li>列入該區 100 家轉輪池與五大招牌菜推薦</li>
+          <li>Google 地圖一鍵導航直連貴店</li>
+          <li><strong>適合：</strong>想穩定增加在地新客的優質小吃與餐廳</li>
+        </ul>
+      </div>
+      <div class="card" style="border:2px solid #ffd700; background:linear-gradient(135deg,#29200a,#161b30);">
+        <h3>👑 方案 B｜黃金 VIP 左右看板（最熱銷）</h3>
+        <ul>
+          <li><strong>手機／電腦版拉霸機兩側黃金曝光位</strong></li>
+          <li>含方案 A 全部權益＋優先轉出權重加乘</li>
+          <li>加贈<strong>專屬櫃檯結帳拉霸機</strong>（提升五星好評）</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🚀 方案 C｜區域業務／校園大使合夥</h3>
+        <ul>
+          <li>零加盟金、零囤貨，手機打開簡報即可跑店</li>
+          <li><strong>超高簽約分潤獎金</strong>＋續約被動收入</li>
+          <li>總部提供完整話術、名片模板與全台中 14 區展示機</li>
+        </ul>
+      </div>
+    </div>
   </div>
-  <div class="slide">
-    <span class="tag">🎟️ 超商 ATM 級導客閉環</span>
-    <h2>獨家「轉出即領券 × 現場蓋章核銷」讓效果看得見！</h2>
-    <p>仿效超商 ATM 提款後彈出優惠券的高轉換模式，客人轉中本店立刻領取專屬電子禮遇券：</p>
-    <div class="list-item">🔒 <b>防截圖動態秒數時鐘</b>：券面內建每秒跳動電子鐘，徹底杜絕舊截圖重複兌換。</div>
-    <div class="list-item">✅ <b>店員現場一鍵蓋章核銷</b>：結帳時由店員點擊蓋上「已核銷」印章，老闆親眼見證實際帶客數！</div>
-  </div>
-  <div class="slide">
-    <span class="tag">🎁 零負擔優惠設計</span>
-    <h2>老闆完全不虧本的「三選一」高毛利引流方案</h2>
-    <div class="list-item">🥤 <b>方案 A（副餐招待款）</b>：點主餐免費招待招牌小菜、飲料或甜點乙份（食材成本極低）。</div>
-    <div class="list-item">💰 <b>方案 B（客單價放大款）</b>：消費滿 300 折 30 元（或滿 500 折 50），拉高平均單筆消費金額。</div>
-    <div class="list-item">👯 <b>方案 C（揪團裂變款）</b>：兩人同行第二份半價，或四人同行招待招牌菜，強迫帶新客上門。</div>
-  </div>
-  <div class="slide">
-    <span class="tag">💎 創始合作席位方案</span>
-    <h2>低門檻進駐，用一杯飲料的成本換整區客流曝光</h2>
-    <div class="list-item">🥇 <b>創始 VIP 席位（每區每類限量席次）</b>：享有 3 倍中獎權重 ＋ 專屬電子優惠券派發 ＋ 官方社群輪播曝光。</div>
-    <div class="list-item">🏆 <b>黃金視覺看板廣告位（每區限量 10 席）</b>：機台左右兩側超大店招圖片直連導航，搶佔第一眼視覺焦點。</div>
-    <div class="list-item">🤝 <b>合約保障</b>：名額額滿即止，創始簽約店家享有續約優先權與費率鎖定保障。</div>
-  </div>
-  <div class="slide">
-    <span class="tag">📈 未來擴張藍圖</span>
-    <h2>從原台中 8 區 800 家店出發，邁向全台灣生活娛樂入口</h2>
-    <div class="list-item">📍 <b>第一階段（已完成）</b>：原台中市 8 大行政區、800 家餐廳、4,000 道菜色全線營運。</div>
-    <div class="list-item">🚀 <b>第二階段（進行中）</b>：拓展大里、太平、豐原、沙鹿等大台中人口重鎮，並啟動千店優惠券聯播網。</div>
-    <div class="list-item">🌟 <b>第三階段（全國版圖）</b>：串聯雙北、桃園、台南、高雄，打造全台最大遊戲化在地生活平台。</div>
-  </div>
-  <div class="slide">
-    <span class="tag">🤝 立即搶佔創始席位</span>
-    <h2>誠摯邀請優質品牌成為【SpinLife 轉生活】創始合作夥伴！</h2>
-    <p>名額有限，越早進駐越早享受全區流量紅利。歡迎立即體驗我們的現場核銷展示系統，或與業務專員確認貴店專屬席位：</p>
-    <a class="btn-demo" href="javascript:void(0)" onclick="location.href=encodeURI('../01_食_每日美味館/專屬優惠券中心.html')">🎟️ 現場示範：開啟 ATM 電子優惠券核銷系統</a>
-       <a class="btn-demo" style="background:linear-gradient(90deg,#e94560,#b31217); color:#fff; border:1.5px solid #ffd700; margin-top:10px; box-shadow:0 4px 14px rgba(233,69,96,0.45);" href="javascript:void(0)" onclick="location.href=encodeURI('店家專屬折扣拉霸機_展示版.html')">🏪 現場示範：店家櫃檯結帳折扣拉霸機</a>
-    <a class="btn-demo" style="background:linear-gradient(90deg,#ffd700,#f59f00); color:#1a1a2e; margin-top:10px;" href="../../index.html">🎰 立即實測：全台中八大戰區美食拉霸機</a>
-       <a class="btn-demo" style="background:linear-gradient(90deg,#06c755,#05a546); color:#fff; margin-bottom:10px; box-shadow:0 4px 14px rgba(6,199,85,0.45);" href="https://lin.ee/9jDwxqQ" target="_blank">💬 點我加官方 LINE・立即洽談／登記合作</a>
-  </div>
-   <div class="slide">
-    <span class="tag" style="background:rgba(233,69,96,0.25); border-color:#e94560; color:#ff7675;">🔥 創始限定・限量 10 個名額</span>
-    <h2>別家廣告公司要您先付錢，【SpinLife】讓您先賺錢！</h2>
-    <p>我們對導客效果有絕對信心！不畫大餅、不強迫推銷，直接把賺錢工具送到您櫃檯：</p>
-    <div class="list-item" style="border-left-color:#00b894;">🎁 <b>第一步（零元先賺錢）</b>：完成申請登錄拉霸遊戲名單，<b>立即免費贈送「店家門市專屬折扣拉霸機」1 個月一組</b>，先讓客人玩起來、店裡生意先熱起來！</div>
-    <div class="list-item" style="border-left-color:#ffd700;">🚀 <b>第二步（買廣告送展延）</b>：用得滿意再加購！每加購 <b>1 個月</b> 平台曝光廣告，門市折扣拉霸機<b>自動免費展延 1 個月</b>；加購 <b>2 個月</b> 展延 <b>2 個月</b>，以此類推，<b>最多免費展延滿 1 年（12 個月）</b>！</div>
-    <div class="list-item" style="border-left-color:#e94560;">⏳ <b>席次倒數保證</b>：本區僅釋出 <b>10 個創始名額</b>，額滿即恢復原價建置費與月租費！</div>
-    <a class="btn-demo" style="background:linear-gradient(90deg,#e94560,#b31217); color:#fff; border:1.5px solid #ffd700; margin-top:10px;" href="javascript:void(0)" onclick="location.href=encodeURI('店家專屬折扣拉霸機_展示版.html')">🏪 立即現場體驗：門市專屬折扣拉霸機</a>
+
+  <div class="cta-box">
+    <h2 style="margin:0 0 8px; color:#ffd700; font-size:22px;">🔥 搶佔您所在商圈的「前 10 名創始 VIP 黃金席位」</h2>
+    <p style="margin:0; font-size:14px; color:#dee2e6;">同業競爭激烈，每區左右看板僅限 10 席，額滿即止！立即體驗拉霸機或聯繫創辦團隊預約卡位：</p>
+    <div class="cta-btns">
+      <a class="btn-gold" href="../../index.html">🎰 立即體驗 14 區美食拉霸機</a>
+      <button class="btn-line" onclick="copyPitch()">📋 一鍵複製招商介紹文案（傳給老闆／朋友）</button>
+    </div>
   </div>
 </div>
-<div class="controls">
-  <button class="btn-ctrl btn-prev" onclick="moveSlide(-1)">⬅️ 上一頁</button>
-  <button class="btn-ctrl btn-next" onclick="moveSlide(1)">下一頁 ➡️</button>
-</div>
+
 <script>
-let cur = 0;
-const slides = document.querySelectorAll('.slide');
-function showSlide(n) {
-  slides[cur].classList.remove('active');
-  cur = (n + slides.length) % slides.length;
-  slides[cur].classList.add('active');
-  document.getElementById('pageInd').innerText = '第 ' + (cur + 1) + ' / ' + slides.length + ' 頁';
+function calcSave() {
+  const rev = parseFloat(document.getElementById('revInput').value) || 0;
+  const feeYear = Math.round(rev * 0.35 * 12);
+  const saveYear = Math.round(feeYear * 0.2);
+  document.getElementById('calcOut').innerHTML =
+    '💸 每年白白送給外送平台的抽成高達：<span class="highlight-red">' + feeYear.toLocaleString() + ' 元</span>！<br>' +
+    '✅ 加入 <strong>SpinLife 轉生活（零抽成導客）</strong>，只要成功把 20% 客人轉為線下自取／內用，每年直接多賺回：<span class="highlight-green">+' + saveYear.toLocaleString() + ' 元純利潤</span>！';
 }
-function moveSlide(step) { showSlide(cur + step); }
-let startX = 0;
-document.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
-document.addEventListener('touchend', e => {
-  const diff = e.changedTouches[0].clientX - startX;
-  if (Math.abs(diff) > 45) moveSlide(diff < 0 ? 1 : -1);
-});
+
+function copyPitch() {
+  const txt = '🎰【SpinLife 轉生活｜大台中 14 區・1,400 家名店美食拉霸機】正式上線！\n不抽成、不綁約，讓大台中吃貨一轉就直接 Google 導航到您店門口！\n目前各區「左右黃金 VIP 看板（每區僅限 10 席）」創始優惠招募中，歡迎老闆搶先卡位，也歡迎業務夥伴洽談高分潤合作！';
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(txt).then(() => alert('✅ 已複製《SpinLife 3.0 招商介紹文案》，快貼到 LINE 傳給餐廳老闆或合作夥伴吧！'));
+  }
+}
 </script>
 </body>
 </html>
