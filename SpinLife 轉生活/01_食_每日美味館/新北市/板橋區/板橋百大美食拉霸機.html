@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SpinLife 轉生活｜新北市板橋區・百大美食拉霸機</title>
+<style>
+  * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Microsoft JhengHei", sans-serif; }
+  body { margin: 0; padding: 12px 6px; background: linear-gradient(135deg, #141424 0%, #1a2238 100%); color: #fff; display: flex; flex-direction: column; align-items: center; min-height: 100vh; overflow-x: hidden; }
+  .top-bar { width: 100%; max-width: 960px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; padding: 0 6px; gap: 4px; }
+  .home-btn { background: #ffd700; color: #1a1a2e; font-size: 12px; font-weight: 900; padding: 4px 10px; border-radius: 20px; text-decoration: none; white-space: nowrap; }
+  .clock-badge { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,215,0,0.4); color: #ffe066; font-size: 12px; font-weight: bold; padding: 4px 10px; border-radius: 20px; }
+  .snd-btn { background: rgba(255,255,255,0.15); border: 1px solid #ffd700; color: #fff; font-size: 12px; padding: 4px 10px; border-radius: 20px; cursor: pointer; white-space: nowrap; }
+  .header { text-align: center; margin-bottom: 10px; }
+  .header h1 { margin: 0; font-size: 20px; color: #ffd700; text-shadow: 0 2px 10px rgba(255,215,0,0.4); }
+  .header p { margin: 3px 0 0; font-size: 11px; color: #b0b8d1; }
+  .main-arena { display: flex; flex-direction: row; align-items: stretch; justify-content: center; gap: 6px; width: 100%; max-width: 960px; }
+  .ad-column { flex: 0 0 21%; max-width: 175px; min-width: 72px; display: flex; flex-direction: column; justify-content: space-between; gap: 6px; }
+  .ad-card { flex: 1; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,215,0,0.4); border-radius: 10px; padding: 6px 4px; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; text-decoration: none; color: #fff; min-height: 72px; }
+  .ad-card.vacant { border: 1px dashed rgba(255,255,255,0.3); background: rgba(255,255,255,0.03); cursor: pointer; }
+  .ad-tag { font-size: 9px; font-weight: bold; padding: 1px 5px; border-radius: 6px; margin-bottom: 3px; background: #ffd700; color: #1a1a2e; }
+  .ad-card.vacant .ad-tag { background: rgba(255,255,255,0.15); color: #bbb; }
+  .ad-title { font-size: 11px; font-weight: bold; line-height: 1.2; margin-bottom: 2px; }
+  .ad-sub { font-size: 9px; color: #ffe066; }
+  .center-stage { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; }
+  .filter-panel { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,215,0,0.3); border-radius: 12px; padding: 10px; width: 100%; margin-bottom: 10px; }
+  select { width: 100%; padding: 8px; border-radius: 8px; border: none; background: #fff; color: #1a1a2e; font-size: 13px; font-weight: bold; outline: none; }
+  .open-row { margin-top: 8px; display: flex; flex-direction: column; align-items: flex-start; gap: 5px; }
+  .machine { background: #e94560; padding: 14px 8px; border-radius: 18px; width: 100%; border: 3px solid #ffd700; box-shadow: 0 8px 20px rgba(0,0,0,0.5); }
+  .machine.win-glow { animation: winPulse 0.6s ease-in-out 3; }
+  @keyframes winPulse { 0%, 100% { box-shadow: 0 0 15px #ffd700; } 50% { box-shadow: 0 0 38px #fff, 0 0 55px #ffd700; } }
+  .slots { display: flex; gap: 5px; background: #0f3460; padding: 10px 6px; border-radius: 10px; }
+  .slot-win { flex: 1; background: #fff; color: #1a1a2e; border-radius: 8px; height: 106px; position: relative; overflow: hidden; box-shadow: inset 0 8px 10px -6px rgba(0,0,0,0.4), inset 0 -8px 10px -6px rgba(0,0,0,0.4); }
+  .slot-label { font-size: 9px; color: #fff; background: rgba(15,52,96,0.9); padding: 1px 6px; border-radius: 6px; position: absolute; top: 4px; left: 50%; transform: translateX(-50%); font-weight: bold; z-index: 5; white-space: nowrap; }
+  .reel-strip { position: absolute; top: 0; left: 0; width: 100%; will-change: transform; }
+  .reel-item { height: 106px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 16px 3px 4px; font-size: 13px; font-weight: 900; line-height: 1.2; color: #1a1a2e; }
+  .btn-spin { width: 100%; margin-top: 14px; padding: 14px; font-size: 16px; font-weight: bold; color: #1a1a2e; background: #ffd700; border: none; border-radius: 50px; cursor: pointer; box-shadow: 0 4px 0 #b39700; }
+  .btn-spin:disabled { background: #888; box-shadow: none; color: #ccc; }
+  .result-card { display: none; margin-top: 12px; background: rgba(255,255,255,0.12); border: 1.5px solid #ffd700; border-radius: 12px; padding: 12px; width: 100%; text-align: center; }
+  .result-card.closed { border-color: #ff6b6b; background: rgba(255,75,75,0.15); }
+  .dish-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; margin: 8px 0; }
+  .dtag { background: rgba(255,255,255,0.15); padding: 2px 7px; border-radius: 10px; font-size: 11px; }
+  .dtag.hit { background: #ffd700; color: #1a1a2e; font-weight: bold; }
+  .act-row { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+  .btn-map { display: inline-block; background: #00b894; color: #fff; text-decoration: none; padding: 8px 14px; border-radius: 20px; font-size: 12px; font-weight: bold; }
+  .btn-share { background: #0984e3; color: #fff; border: none; padding: 8px 14px; border-radius: 20px; font-size: 12px; font-weight: bold; cursor: pointer; }
+  .footer-biz { margin-top: 16px; text-align: center; font-size: 11px; color: #8c96b5; }
+  .footer-biz a { color: #ffd700; text-decoration: underline; font-weight: bold; }
+  #confettiCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 999; }
+</style>
+</head>
+<body>
+<canvas id="confettiCanvas"></canvas>
+<div class="top-bar">
+  <a class="home-btn" href="../../../../index.html">🏠 回總部大廳</a>
+  <span class="clock-badge" id="liveClock">🕒 --:--</span>
+  <button class="snd-btn" id="sndBtn" onclick="togSnd()">🔊 音效開</button>
+</div>
+<div class="header">
+  <h1>🎰 新北市板橋區・百大美食拉霸機</h1>
+  <p>5 大精選分類 × 每類限量 20 席 × 嚴選 500 道招牌菜</p>
+</div>
+<div class="main-arena">
+  <div class="ad-column">
+    <a class="ad-card" href="https://lin.ee" target="_blank" style="background:linear-gradient(135deg,#2c1e05,#1a1a2e); border:1.5px solid #ffd700; padding:4px;"><div style="background:#ffd700;color:#1a1a2e;font-size:10px;font-weight:900;padding:2px 6px;border-radius:6px;margin-bottom:3px;line-height:1.15;">🔥 旺鋪<br>招商中</div><div class="ad-title" style="color:#ffd700;">板橋創始席位</div><div class="ad-sub">點擊加LINE洽談</div></a>
+    <a class="ad-card" href="https://lin.ee" target="_blank" style="background:linear-gradient(135deg,#2c1e05,#1a1a2e); border:1.5px solid #ffd700; padding:4px;"><div style="background:#ffd700;color:#1a1a2e;font-size:10px;font-weight:900;padding:2px 6px;border-radius:6px;margin-bottom:3px;line-height:1.15;">🔥 旺鋪<br>招商中</div><div class="ad-title" style="color:#ffd700;">新板特區席位</div><div class="ad-sub">百貨商圈首選</div></a>
+    <a class="ad-card" href="https://lin.ee" target="_blank" style="background:linear-gradient(135deg,#2c1e05,#1a1a2e); border:1.5px solid #ffd700; padding:4px;"><div style="background:#ffd700;color:#1a1a2e;font-size:10px;font-weight:900;padding:2px 6px;border-radius:6px;margin-bottom:3px;line-height:1.15;">🔥 旺鋪<br>招商中</div><div class="ad-title" style="color:#ffd700;">府中商圈席位</div><div class="ad-sub">一鍵導航吸客</div></a>
+    <a class="ad-card" href="https://lin.ee" target="_blank" style="background:linear-gradient(135deg,#2c1e05,#1a1a2e); border:1.5px solid #ffd700; padding:4px;"><div style="background:#ffd700;color:#1a1a2e;font-size:10px;font-weight:900;padding:2px 6px;border-radius:6px;margin-bottom:3px;line-height:1.15;">🔥 旺鋪<br>招商中</div><div class="ad-title" style="color:#ffd700;">湳雅夜市席位</div><div class="ad-sub">歡迎名店進駐</div></a>
+    <a class="ad-card" href="https://lin.ee" target="_blank" style="background:linear-gradient(135deg,#2c1e05,#1a1a2e); border:1.5px solid #ffd700; padding:4px;"><div style="background:#ffd700;color:#1a1a2e;font-size:10px;font-weight:900;padding:2px 6px;border-radius:6px;margin-bottom:3px;line-height:1.15;">🔥 旺鋪<br>招商中</div><div class="ad-title" style="color:#ffd700;">江子翠席位</div><div class="ad-sub">限量10席VIP</div></a>
+  </div>
+  <div class="center-stage">
+    <div class="filter-panel">
+      <select id="catSelect" onchange="updateCount()">
+        <option value="all">🎲 1. 美食隨機抽（全區 100 家總池）</option>
+        <option value="人氣小吃">🥢 2. 人氣小吃（限量 20 家）</option>
+        <option value="台味合菜">🇹🇼 3. 台味合菜（限量 20 家）</option>
+        <option value="鍋物燒烤">🍲 4. 鍋物燒烤（限量 20 家）</option>
+        <option value="異國美饌">🌍 5. 異國美饌（限量 20 家）</option>
+        <option value="咖啡午茶">☕ 6. 咖啡午茶（限量 20 家）</option>
+      </select>
+      <div class="open-row">
+        <label style="display:flex; align-items:center; gap:5px; font-size:12px; color:#ffe066; font-weight:bold; cursor:pointer;"><input type="checkbox" id="openCheck" onchange="updateCount()" style="width:15px;height:15px;"> 🟢 僅抽目前營業中</label>
+        <span id="countText" style="font-size:11px; color:#b0b8d1; align-self:flex-end;">統計中...</span>
+      </div>
+    </div>
+    <div class="machine" id="machineBox">
+      <div class="slots">
+        <div class="slot-win"><span class="slot-label">第一軸・菜色</span><div class="reel-strip" id="st1"><div class="reel-item">🍽️<br>準備開轉</div></div></div>
+        <div class="slot-win"><span class="slot-label">第二軸・店家</span><div class="reel-strip" id="st2"><div class="reel-item">🏪<br>板橋好店</div></div></div>
+        <div class="slot-win"><span class="slot-label">第三軸・狀態</span><div class="reel-strip" id="st3"><div class="reel-item">⏰<br>即時對時</div></div></div>
+      </div>
+      <button class="btn-spin" id="spinBtn" onclick="spinV6()">板橋美食，開轉！</button>
+    </div>
+    <div class="result-card" id="resBox">
+      <div id="resText" style="font-weight:bold;font-size:14px;"></div>
+      <div id="resHours" style="font-size:12px;color:#ccc;margin-top:4px;"></div>
+      <div class="dish-tags" id="resTags"></div>
+      <div class="act-row" id="resAction"></div>
+    </div>
+  </div>
+  <div class="ad-column">
+    <a class="ad-card" href="https://lin.ee" target="_blank" style="background:linear-gradient(135deg,#2c1e05,#1a1a2e); border:1.5px solid #ffd700; padding:4px;"><div style="background:#ffd700;color:#1a1a2e;font-size:10px;font-weight:900;padding:2px 6px;border-radius:6px;margin-bottom:3px;line-height:1.15;">🔥 旺鋪<br>招商中</div><div class="ad-title" style="color:#ffd700;">新埔捷運席位</div><div class="ad-sub">點擊加LINE洽談</div></a>
+    <a class="ad-card" href="https://lin.ee" target="_blank" style="background:linear-gradient(135deg,#2c1e05,#1a1a2e); border:1.5px solid #ffd700; padding:4px;"><div style="background:#ffd700;color:#1a1a2e;font-size:10px;font-weight:900;padding:2px 6px;border-radius:6px;margin-bottom:3px;line-height:1.15;">🔥 旺鋪<br>招商中</div><div class="ad-title" style="color:#ffd700;">亞東醫院席位</div><div class="ad-sub">高精準在地導流</div></a>
+    <a class="ad-card" href="https://lin.ee" target="_blank" style="background:linear-gradient(135deg,#2c1e05,#1a1a2e); border:1.5px solid #ffd700; padding:4px;"><div style="background:#ffd700;color:#1a1a2e;font-size:10px;font-weight:900;padding:2px 6px;border-radius:6px;margin-bottom:3px;line-height:1.15;">🔥 旺鋪<br>招商中</div><div class="ad-title" style="color:#ffd700;">文化路席位</div><div class="ad-sub">一鍵導航吸客</div></a>
+    <a class="ad-card" href="https://lin.ee" target="_blank" style="background:linear-gradient(135deg,#2c1e05,#1a1a2e); border:1.5px solid #ffd700; padding:4px;"><div style="background:#ffd700;color:#1a1a2e;font-size:10px;font-weight:900;padding:2px 6px;border-radius:6px;margin-bottom:3px;line-height:1.15;">🔥 旺鋪<br>招商中</div><div class="ad-title" style="color:#ffd700;">限量廣告席位</div><div class="ad-sub">每類僅限20席</div></a>
+    <a class="ad-card" href="https://lin.ee" target="_blank" style="background:linear-gradient(135deg,#2c1e05,#1a1a2e); border:1.5px solid #ffd700; padding:4px;"><div style="background:#ffd700;color:#1a1a2e;font-size:10px;font-weight:900;padding:2px 6px;border-radius:6px;margin-bottom:3px;line-height:1.15;">🔥 旺鋪<br>招商中</div><div class="ad-title" style="color:#ffd700;">特約合作席位</div><div class="ad-sub">歡迎名店進駐</div></a>
+  </div>
+</div>
+<div class="footer-biz">營運示範站：新北市板橋區｜<a href="javascript:void(0)" onclick="location.href=encodeURI('../../../99_公司總部與招商資料/轉生活創業與招商簡報.html')">📊 查看創始商家招商簡報</a></div>
+<script>
+const shopsV6 = [
+  { shop: "高記生炒魷魚", cat: "人氣小吃", area: "府中黃石", open: 8.0, close: 17.5, vip: false, w: 1, dishes: ["生炒魷魚", "芋頭糕", "蘿蔔糕", "糯米腸", "綜合羹"] },
+  { shop: "黃石謝家肉羹油飯", cat: "人氣小吃", area: "府中黃石", open: 7.5, close: 15.0, vip: false, w: 1, dishes: ["筒仔米糕", "傳統油飯", "赤肉羹湯", "滷蛋貢丸", "燙青菜"] },
+  { shop: "秋香ㄟ店油飯", cat: "人氣小吃", area: "府中黃石", open: 8.0, close: 16.0, vip: false, w: 1, dishes: ["古早味油飯", "控肉飯", "綜合四神湯", "滷豆腐", "燙大陸妹"] },
+  { shop: "老曹餛飩", cat: "人氣小吃", area: "府中商圈", open: 6.0, close: 20.0, vip: false, w: 1, dishes: ["鮮肉大餛飩", "榨菜肉絲麵", "乾拌陽春麵", "滷蛋海帶", "紅油抄手"] },
+  { shop: "好味香烤鴨莊", cat: "人氣小吃", area: "湳雅夜市", open: 10.5, close: 21.0, vip: false, w: 1, dishes: ["片皮烤鴨半隻", "醬爆炒鴨架", "荷葉餅", "蔥爆鴨肉", "酸菜鴨骨湯"] },
+  { shop: "湳雅麻油雞", cat: "人氣小吃", area: "湳雅夜市", open: 16.5, close: 24.5, vip: false, w: 1, dishes: ["麻油雞腿湯", "麻油腰子", "麻油乾麵線", "麻油米血", "麻油高麗菜"] },
+  { shop: "板橋蚵仔之家", cat: "人氣小吃", area: "湳雅夜市", open: 17.0, close: 25.0, vip: false, w: 1, dishes: ["鮮蚵煎", "蚵仔麵線", "花枝羹", "蒜香炸蚵仔", "蛤蜊湯"] },
+  { shop: "林立涼麵", cat: "人氣小吃", area: "新埔捷運", open: 6.5, close: 14.0, vip: false, w: 1, dishes: ["招牌芝麻涼麵", "蒜味涼麵", "味噌貢丸蛋花湯", "黃金泡菜", "皮蛋豆腐"] },
+  { shop: "太極鰲車輪餅", cat: "人氣小吃", area: "新埔民生", open: 12.0, close: 21.0, vip: false, w: 1, dishes: ["爆漿奶油車輪餅", "萬丹紅豆餅", "芝麻花生餅", "芋頭鹹蛋黃餅", "珍珠卡士達餅"] },
+  { shop: "江子翠無名豆漿", cat: "人氣小吃", area: "江子翠站", open: 5.5, close: 11.5, vip: false, w: 1, dishes: ["手工蛋餅", "現磨冰豆漿", "韭菜盒子", "焦糖甜餅", "蔥抓餅加蛋"] },
+  { shop: "松柏街古早味鹹粥", cat: "人氣小吃", area: "江子翠站", open: 6.0, close: 13.5, vip: false, w: 1, dishes: ["虱目魚肚鹹粥", "鮮蚵紅燒肉粥", "現炸紅燒肉", "滷粉腸", "燙菠菜"] },
+  { shop: "北門街胡椒餅", cat: "人氣小吃", area: "府中商圈", open: 14.0, close: 22.0, vip: false, w: 1, dishes: ["炭烤黑胡椒餅", "甜酥餅", "蔥肉餡餅", "酸辣湯", "冬瓜檸檬"] },
+  { shop: "文聖街蚵仔麵線", cat: "人氣小吃", area: "新埔站", open: 7.0, close: 19.5, vip: false, w: 1, dishes: ["大腸蚵仔麵線", "清麵線", "手工肉圓", "滷大腸", "魚丸湯"] },
+  { shop: "四維路香雞排", cat: "人氣小吃", area: "新埔民生", open: 15.0, close: 24.0, vip: false, w: 1, dishes: ["脆皮香雞排", "椒鹽魷魚圈", "甜不辣", "四季豆", "炸百頁豆腐"] },
+  { shop: "重慶路脆皮雞蛋糕", cat: "人氣小吃", area: "重慶商圈", open: 13.5, close: 22.5, vip: false, w: 1, dishes: ["原味脆皮雞蛋糕", "雙色起司雞蛋糕", "巧克力豆雞蛋糕", "黑糖麻糬雞蛋糕", "煉乳奶酥雞蛋糕"] },
+  { shop: "致理後門小籠包", cat: "人氣小吃", area: "新埔商圈", open: 6.0, close: 13.5, vip: false, w: 1, dishes: ["現蒸鮮肉小籠包", "蔥花蛋餅", "冰米漿", "酸辣湯包", "蘿蔔糕加蛋"] },
+  { shop: "三民路滷肉飯", cat: "人氣小吃", area: "三民路", open: 11.0, close: 21.0, vip: false, w: 1, dishes: ["肥瘦滷肉飯", "焢肉便當", "滷白菜", "筍絲蹄膀", "苦瓜排骨湯"] },
+  { shop: "國光路手工水餃", cat: "人氣小吃", area: "國光商圈", open: 11.0, close: 21.5, vip: false, w: 1, dishes: ["高麗菜豬肉水餃", "韭菜蝦仁水餃", "酸辣湯", "滷味拼盤", "小黃瓜拌干絲"] },
+  { shop: "亞東甜不辣", cat: "人氣小吃", area: "亞東醫院", open: 11.0, close: 21.0, vip: false, w: 1, dishes: ["綜合甜不辣", "黃金魚蛋", "豬血糕", "菜頭貢丸", "免費柴魚高湯"] },
+  { shop: "館前東路雞肉飯", cat: "人氣小吃", area: "府中後站", open: 11.0, close: 22.0, vip: false, w: 1, dishes: ["火雞肉片飯", "雞魯雙拼飯", "半熟荷包蛋", "滷油豆腐", "蛤蜊薑絲湯"] },
+  { shop: "青青餐廳", cat: "台味合菜", area: "江子翠站", open: 11.0, close: 21.5, vip: false, w: 1, dishes: ["港式脆皮燒雞", "櫻花蝦米糕", "避風塘炒蟹", "金沙中卷", "蛤蜊絲瓜"] },
+  { shop: "阿霞台菜海鮮", cat: "台味合菜", area: "新板特區", open: 11.3, close: 21.5, vip: false, w: 1, dishes: ["古早味紅蟳米糕", "白斬放山雞", "乾煎豬肝", "烏魚子拼盤", "酸菜肚片湯"] },
+  { shop: "板橋海釣船台菜", cat: "台味合菜", area: "文化路", open: 11.0, close: 22.0, vip: false, w: 1, dishes: ["清蒸龍虎斑", "三杯中卷", "蒜泥白肉", "椒鹽大蝦", "剝皮辣椒雞湯"] },
+  { shop: "府中家常菜館", cat: "台味合菜", area: "府中商圈", open: 11.0, close: 21.0, vip: false, w: 1, dishes: ["梅干扣肉", "塔香海瓜子", "菜脯蛋", "空心菜炒牛肉", "鳳梨苦瓜雞"] },
+  { shop: "新板古早味宴席", cat: "台味合菜", area: "新板特區", open: 11.5, close: 21.5, vip: false, w: 1, dishes: ["佛跳牆", "干貝海鮮羹", "糖醋黃魚", "油雞拼叉燒", "芋泥八寶飯"] },
+  { shop: "湳雅家鄉小炒", cat: "台味合菜", area: "湳雅夜市", open: 16.0, close: 25.0, vip: false, w: 1, dishes: ["客家小炒", "蒼蠅頭", "鐵板豆腐", "炒水蓮", "九層塔蛋"] },
+  { shop: "江翠懷舊台菜", cat: "台味合菜", area: "江子翠站", open: 11.0, close: 21.0, vip: false, w: 1, dishes: ["蔭豉鮮蚵", "糖醋排骨", "薑絲大腸", "高麗菜封", "菜頭排骨湯"] },
+  { shop: "新埔海產大王", cat: "台味合菜", area: "新埔站", open: 16.5, close: 25.0, vip: false, w: 1, dishes: ["鹽烤泰國蝦", "清炒高麗菜苗", "酥炸軟殼蟹", "炒海瓜子", "鮮魚味噌湯"] },
+  { shop: "陽明街熱炒店", cat: "台味合菜", area: "新埔民生", open: 17.0, close: 25.5, vip: false, w: 1, dishes: ["沙茶牛肉炒空心菜", "宮保雞丁", "鳳梨蝦球", "蔥爆豬肉", "蚵仔湯"] },
+  { shop: "民生路台味小館", cat: "台味合菜", area: "民生路", open: 11.0, close: 21.0, vip: false, w: 1, dishes: ["古早味滷豬腳", "麻油雙腰", "蝦仁炒蛋", "炒芥蘭", "香菇雞湯"] },
+  { shop: "國慶路海鮮快炒", cat: "台味合菜", area: "國慶商圈", open: 16.5, close: 25.0, vip: false, w: 1, dishes: ["避風塘排骨", "清蒸鮮蝦", "豆豉鮮蚵", "炒山蘇", "蛤蜊湯"] },
+  { shop: "中山路經典合菜", cat: "台味合菜", area: "中山路", open: 11.0, close: 21.5, vip: false, w: 1, dishes: ["脆皮烤鴨", "蟹黃豆腐煲", "干扁四季豆", "金沙南瓜", "酸菜白肉鍋"] },
+  { shop: "重慶路鄉村料理", cat: "台味合菜", area: "重慶商圈", open: 11.0, close: 21.0, vip: false, w: 1, dishes: ["白斬土雞", "蒜炒青龍椒", "紅燒肉", "麻婆豆腐", "竹筍排骨湯"] },
+  { shop: "華江橋頭海產店", cat: "台味合菜", area: "華江橋旁", open: 16.0, close: 24.5, vip: false, w: 1, dishes: ["蒜蓉蒸扇貝", "椒鹽白蝦", "五更腸旺", "炒A菜", "魚頭火鍋"] },
+  { shop: "亞東台菜小棧", cat: "台味合菜", area: "亞東醫院", open: 11.0, close: 21.0, vip: false, w: 1, dishes: ["香煎虱目魚肚", "醬爆茄子", "菜脯烘蛋", "地瓜葉", "蘿蔔丸子湯"] },
+  { shop: "浮洲橋台式快炒", cat: "台味合菜", area: "浮洲商圈", open: 16.5, close: 24.5, vip: false, w: 1, dishes: ["三杯雞腿", "鐵板牛柳", "四季肥腸", "炒高麗菜", "酸菜魚片湯"] },
+  { shop: "溪崑古早味家常館", cat: "台味合菜", area: "溪崑商圈", open: 11.0, close: 21.0, vip: false, w: 1, dishes: ["古早味封肉", "紅燒豆腐", "炒花枝", "清炒水蓮", "冬瓜蛤蜊湯"] },
+  { shop: "四川路平價熱炒", cat: "台味合菜", area: "四川路", open: 16.0, close: 25.0, vip: false, w: 1, dishes: ["辣子雞丁", "水煮牛肉", "魚香茄子", "干鍋花菜", "番茄蛋花湯"] },
+  { shop: "大觀路古早味餐廳", cat: "台味合菜", area: "大觀路", open: 11.0, close: 21.0, vip: false, w: 1, dishes: ["白斬放山雞", "滷大腸頭", "炒米粉", "燙地瓜葉", "排骨酥湯"] },
+  { shop: "板橋車站懷舊台菜", cat: "台味合菜", area: "新板特區", open: 11.0, close: 22.0, vip: false, w: 1, dishes: ["麻油松阪豬", "三杯杏鮑菇", "鳳梨蝦球", "金沙苦瓜", "剝皮辣椒雞"] },
+  { shop: "新板麻辣鴛鴦鍋", cat: "鍋物燒烤", area: "新板特區", open: 11.0, close: 26.0, vip: false, w: 1, dishes: ["招牌麻辣鴨血鍋", "老油條", "美國無骨牛小排", "手工花枝滑", "烏梅汁"] },
+  { shop: "府中石頭小火鍋", cat: "鍋物燒烤", area: "府中商圈", open: 11.0, close: 24.0, vip: false, w: 1, dishes: ["爆炒洋蔥石頭鍋", "特選沙朗牛", "梅花豬肉片", "手工蛋餃", "冬瓜檸檬冰沙"] },
+  { shop: "文化路和牛燒肉", cat: "鍋物燒烤", area: "文化路", open: 17.0, close: 24.5, vip: false, w: 1, dishes: ["A5和牛拼盤", "厚切牛舌", "伊比利豬肋條", "明太子山藥", "海鹽牛肋條"] },
+  { shop: "江子翠炭火燒肉", cat: "鍋物燒烤", area: "江子翠站", open: 17.0, close: 24.0, vip: false, w: 1, dishes: ["炭烤牛五花", "蔥鹽松阪豬", "醬烤雞腿肉", "奶油金針菇", "日式烤麻糬"] },
+  { shop: "新埔涮涮鍋專門店", cat: "鍋物燒烤", area: "新埔站", open: 11.0, close: 23.5, vip: false, w: 1, dishes: ["昆布海鮮總匯鍋", "霜降牛肉鍋", "黑毛豬培根鍋", "爆漿起司丸", "手作芋頭貢丸"] },
+  { shop: "湳雅炭烤串燒屋", cat: "鍋物燒烤", area: "湳雅夜市", open: 17.5, close: 25.5, vip: false, w: 1, dishes: ["明太子雞肉串", "培根干貝捲", "鹽烤秋刀魚", "烤甜不辣", "生啤酒"] },
+  { shop: "縣民大道酸菜白肉鍋", cat: "鍋物燒烤", area: "新板特區", open: 11.5, close: 22.5, vip: false, w: 1, dishes: ["炭火酸菜白肉鍋", "五花白肉片", "手工川丸子", "蔥油餅", "炸排骨酥"] },
+  { shop: "漢生東路日式燒鳥", cat: "鍋物燒烤", area: "新板特區", open: 18.0, close: 25.0, vip: false, w: 1, dishes: ["炭火雞腿串", "雞軟骨串", "鹽烤雞心", "明太子玉子燒", "柚子酒"] },
+  { shop: "民生路藥膳羊肉爐", cat: "鍋物燒烤", area: "民生路", open: 16.0, close: 25.5, vip: false, w: 1, dishes: ["當歸帶皮羊肉爐", "羊大骨髓", "涮羊肉片", "腐乳沾醬", "麻油麵線"] },
+  { shop: "三民路薑母鴨總店", cat: "鍋物燒烤", area: "三民路", open: 16.0, close: 25.5, vip: false, w: 1, dishes: ["炭火老薑母鴨", "鴨肉丸子", "凍豆腐", "鴨血糕", "高麗菜盤"] },
+  { shop: "亞東韓式銅盤烤肉", cat: "鍋物燒烤", area: "亞東醫院", open: 11.0, close: 22.0, vip: false, w: 1, dishes: ["銅盤烤牛肉", "厚切五花肉", "海鮮煎餅", "泡菜豆腐鍋", "辣炒年糕"] },
+  { shop: "莒光路海鮮蒸氣鍋", cat: "鍋物燒烤", area: "新埔民生", open: 11.5, close: 22.5, vip: false, w: 1, dishes: ["活體波士頓龍蝦", "清蒸大蛤蜊", "牛奶貝", "松阪豬肉片", "干貝海鮮粥"] },
+  { shop: "雙十路日式壽喜燒", cat: "鍋物燒烤", area: "江子翠站", open: 11.0, close: 22.5, vip: false, w: 1, dishes: ["關東壽喜燒鍋", "安格斯黑牛", "國產梅花豬", "有機土雞蛋", "讚岐烏龍麵"] },
+  { shop: "中山路平價小火鍋", cat: "鍋物燒烤", area: "中山路", open: 11.0, close: 23.0, vip: false, w: 1, dishes: ["大腸臭臭鍋", "起司牛奶鍋", "泡菜豬肉鍋", "滷鴨血豆腐", "冰淇淋自助吧"] },
+  { shop: "重慶路居酒屋串燒", cat: "鍋物燒烤", area: "重慶商圈", open: 17.5, close: 25.0, vip: false, w: 1, dishes: ["午仔魚一夜干", "醬烤雞皮串", "烤杏鮑菇", "明太子馬鈴薯", "沙瓦飲品"] },
+  { shop: "國光路石頭火鍋城", cat: "鍋物燒烤", area: "國光商圈", open: 11.5, close: 23.5, vip: false, w: 1, dishes: ["傳統麻油石頭鍋", "乾魷魚爆香", "沙朗牛肉盤", "手工魚餃", "芋頭排骨酥"] },
+  { shop: "四川路麻辣燙鍋物", cat: "鍋物燒烤", area: "四川路", open: 11.0, close: 24.0, vip: false, w: 1, dishes: ["椒麻牛奶鍋", "特級牛五花", "老油條", "手工蝦仁漿", "科學麵"] },
+  { shop: "浮洲炭烤串燒吧", cat: "鍋物燒烤", area: "浮洲商圈", open: 17.0, close: 24.5, vip: false, w: 1, dishes: ["蜜汁烤雞翅", "鹽烤牛肋串", "烤四季豆", "烤玉米筍", "麥茶"] },
+  { shop: "大觀路涮涮鍋屋", cat: "鍋物燒烤", area: "大觀路", open: 11.0, close: 22.0, vip: false, w: 1, dishes: ["番茄養生鍋", "培根牛肉盤", "鮮蝦蛤蜊拼盤", "手工花枝丸", "紅豆紫米粥"] },
+  { shop: "新板頂級牛排鐵板燒", cat: "鍋物燒烤", area: "新板特區", open: 11.5, close: 22.0, vip: false, w: 1, dishes: ["菲力牛排", "香煎大明蝦", "干貝魚子醬", "黑松露蒸蛋", "法式濃湯"] },
+  { shop: "新板濃厚豚骨拉麵", cat: "異國美饌", area: "新板特區", open: 11.0, close: 21.5, vip: false, w: 1, dishes: ["特製叉燒豚骨拉麵", "辛味噌拉麵", "溏心蛋", "日式煎餃", "唐揚炸雞"] },
+  { shop: "府中義式窯烤披薩", cat: "異國美饌", area: "府中商圈", open: 11.5, close: 21.5, vip: false, w: 1, dishes: ["瑪格麗特披薩", "松露野菇燉飯", "青醬海鮮義大利麵", "水牛城辣雞翅", "提拉米蘇"] },
+  { shop: "江子翠美式漢堡店", cat: "異國美饌", area: "江子翠站", open: 11.0, close: 21.5, vip: false, w: 1, dishes: ["花生醬培根牛肉堡", "雙層起司牛肉堡", "酥脆薯條", "洋蔥圈", "香草奶昔"] },
+  { shop: "新埔泰式料理小館", cat: "異國美饌", area: "新埔站", open: 11.0, close: 21.0, vip: false, w: 1, dishes: ["月亮蝦餅", "泰式打拋豬", "綠咖哩雞肉", "檸檬清蒸魚", "泰式奶茶"] },
+  { shop: "文化路日式定食屋", cat: "異國美饌", area: "文化路", open: 11.0, close: 21.0, vip: false, w: 1, dishes: ["厚切炸豬排定食", "鹽烤鯖魚定食", "照燒雞腿丼", "茶碗蒸", "味噌湯"] },
+  { shop: "雙十路韓式料理館", cat: "異國美饌", area: "江子翠站", open: 11.0, close: 21.5, vip: false, w: 1, dishes: ["石鍋拌飯", "韓式炸雞", "部隊鍋", "海鮮煎餅", "海帶芽湯"] },
+  { shop: "漢生東路法式餐酒館", cat: "異國美饌", area: "新板特區", open: 17.5, close: 24.5, vip: false, w: 1, dishes: ["油封鴨腿", "紅酒燉牛肉", "松露薯條", "凱撒沙拉", "焦糖烤布蕾"] },
+  { shop: "亞東越南河粉專賣", cat: "異國美饌", area: "亞東醫院", open: 10.5, close: 20.5, vip: false, w: 1, dishes: ["生牛肉河粉", "炸春捲", "越式法國麵包", "涼拌木瓜絲", "滴漏冰咖啡"] },
+  { shop: "民生路印度咖哩屋", cat: "異國美饌", area: "民生路", open: 11.3, close: 21.5, vip: false, w: 1, dishes: ["奶油雞肉咖哩", "蒜味烤餅", "坦都里烤雞", "香料羊肉咖哩", "印度拉茶"] },
+  { shop: "致理旁平價義大利麵", cat: "異國美饌", area: "新埔商圈", open: 11.0, close: 21.0, vip: false, w: 1, dishes: ["奶油培根蛋黃麵", "茄汁肉醬義大利麵", "焗烤海鮮斜管麵", "玉米濃湯", "蒜香麵包"] },
+  { shop: "國慶路日式壽司吧", cat: "異國美饌", area: "國慶商圈", open: 11.5, close: 21.5, vip: false, w: 1, dishes: ["炙燒鮭魚握壽司", "綜合刺身丼", "比目魚鰭邊握", "烤透抽", "鮮蝦手卷"] },
+  { shop: "重慶路墨西哥捲餅屋", cat: "異國美饌", area: "重慶商圈", open: 11.0, close: 21.0, vip: false, w: 1, dishes: ["香辣雞肉捲餅", "牛肉起司烤餅", "玉米脆片莎莎醬", "酪梨醬", "墨西哥汽水"] },
+  { shop: "縣民大道港式茶餐廳", cat: "異國美饌", area: "新板特區", open: 11.0, close: 22.0, vip: false, w: 1, dishes: ["臘味煲仔飯", "冰火菠蘿油", "黃金流沙包", "干炒牛河", "絲襪凍奶茶"] },
+  { shop: "三民路德式豬腳餐館", cat: "異國美饌", area: "三民路", open: 11.5, close: 21.5, vip: false, w: 1, dishes: ["脆皮德國豬腳", "酸菜德式香腸", "奶油蘑菇醬", "薯泥沙拉", "黑麥汁"] },
+  { shop: "華江橋西班牙Tapas館", cat: "異國美饌", area: "華江橋旁", open: 17.0, close: 23.5, vip: false, w: 1, dishes: ["蒜蝦小菜", "西班牙海鮮飯", "伊比利火腿拼盤", "馬鈴薯烘蛋", "桑格利亞果酒"] },
+  { shop: "新埔拉麵沾麵專賣", cat: "異國美饌", area: "新埔站", open: 11.5, close: 21.0, vip: false, w: 1, dishes: ["濃厚魚介沾麵", "柚子鹽味拉麵", "炙燒叉燒", "炸牡蠣", "日式抹茶布丁"] },
+  { shop: "府中南洋椰漿飯館", cat: "異國美饌", area: "府中商圈", open: 11.0, close: 20.5, vip: false, w: 1, dishes: ["馬來西亞椰漿飯", "仁當牛肉", "沙嗲雞肉串", "參峇辣醬", "拉茶"] },
+  { shop: "江子翠地中海料理", cat: "異國美饌", area: "江子翠站", open: 11.5, close: 21.5, vip: false, w: 1, dishes: ["香草烤羊排", "希臘沙拉", "鷹嘴豆泥", "地中海烤魚", "薄荷檸檬水"] },
+  { shop: "大觀路美式早午餐館", cat: "異國美饌", area: "大觀路", open: 8.0, close: 16.0, vip: false, w: 1, dishes: ["班尼迪克蛋", "楓糖鬆餅拼盤", "歐姆蕾起司蛋", "帶皮脆薯", "美式黑咖啡"] },
+  { shop: "板橋車站日式丼飯屋", cat: "異國美饌", area: "新板特區", open: 11.0, close: 21.5, vip: false, w: 1, dishes: ["酥炸海老天丼", "蔥鹽牛舌丼", "親子丼", "日式冷豆腐", "海帶味噌湯"] },
+  { shop: "江子翠老宅手沖咖啡", cat: "咖啡午茶", area: "江子翠站", open: 10.0, close: 19.0, vip: false, w: 1, dishes: ["耶加雪菲手沖", "巴斯克乳酪蛋糕", "拿鐵咖啡", "肉桂捲", "提拉米蘇"] },
+  { shop: "新板景觀咖啡廳", cat: "咖啡午茶", area: "新板特區", open: 10.5, close: 21.0, vip: false, w: 1, dishes: ["焦糖海鹽拿鐵", "抹茶千層蛋糕", "舒芙蕾鬆餅", "蜂蜜檸檬氣泡飲", "可頌麵包"] },
+  { shop: "府中復古甜點咖啡館", cat: "咖啡午茶", area: "府中商圈", open: 12.0, close: 20.5, vip: false, w: 1, dishes: ["昭和布丁", "冰釀單品咖啡", "草莓生乳捲", "焙茶拿鐵", "檸檬塔"] },
+  { shop: "新埔巷弄自家烘焙館", cat: "咖啡午茶", area: "新埔站", open: 9.0, close: 18.5, vip: false, w: 1, dishes: ["衣索比亞冰滴", "厚片花生奶酥", "卡布奇諾", "巧克力布朗尼", "西西里檸檬咖啡"] },
+  { shop: "文化路文青下午茶", cat: "咖啡午茶", area: "文化路", open: 11.0, close: 20.0, vip: false, w: 1, dishes: ["伯爵紅茶戚風", "焦糖瑪奇朵", "司康配果醬", "法式可麗露", "玫瑰拿鐵"] },
+  { shop: "縣民大道質感咖啡吧", cat: "咖啡午茶", area: "新板特區", open: 8.5, close: 19.5, vip: false, w: 1, dishes: ["燕麥奶拿鐵", "火腿起司可頌", "冷萃咖啡", "抹茶生巧克力塔", "黑糖拿鐵"] },
+  { shop: "國慶路手作甜點屋", cat: "咖啡午茶", area: "國慶商圈", open: 12.0, close: 20.0, vip: false, w: 1, dishes: ["芋泥千層蛋糕", "鮮奶茶", "藍莓起司塔", "美式咖啡", "手工餅乾"] },
+  { shop: "陽明街職人咖啡館", cat: "咖啡午茶", area: "新埔民生", open: 9.0, close: 18.0, vip: false, w: 1, dishes: ["哥倫比亞手沖", "玉子燒三明治", "榛果拿鐵", "焦糖烤布丁", "檸檬氣泡美式"] },
+  { shop: "民生路深夜咖啡館", cat: "咖啡午茶", area: "民生路", open: 14.0, close: 25.0, vip: false, w: 1, dishes: ["深夜特調拿鐵", "威士忌布朗尼", "單品熱咖啡", "起司蛋糕", "柚子茶"] },
+  { shop: "亞東醫院旁早午餐咖", cat: "咖啡午茶", area: "亞東醫院", open: 8.0, close: 17.0, vip: false, w: 1, dishes: ["酪梨吐司", "美式冰咖啡", "鮪魚蛋沙拉三明治", "鮮奶拿鐵", "地瓜薯條"] },
+  { shop: "重慶路鬆餅午茶店", cat: "咖啡午茶", area: "重慶商圈", open: 11.5, close: 20.5, vip: false, w: 1, dishes: ["原味舒芙蕾", "水果鬆餅塔", "拿鐵咖啡", "黑糖珍珠鮮奶", "脆薯"] },
+  { shop: "三民路烘焙咖啡館", cat: "咖啡午茶", area: "三民路", open: 8.5, close: 19.0, vip: false, w: 1, dishes: ["鹽可頌", "拿鐵咖啡", "蒜香法國麵包", "美式咖啡", "紅豆麵包"] },
+  { shop: "國光路靜謐咖啡廳", cat: "咖啡午茶", area: "國光商圈", open: 10.0, close: 19.0, vip: false, w: 1, dishes: ["桂花拿鐵", "抹茶紅豆蛋糕", "手沖單品", "起司火腿蛋餅", "蜜香紅茶"] },
+  { shop: "雙十路甜品豆花午茶", cat: "咖啡午茶", area: "江子翠站", open: 12.0, close: 21.5, vip: false, w: 1, dishes: ["黑糖粉圓豆花", "芋圓嫩仙草", "紅豆湯圓", "花生豆花", "冬瓜檸檬"] },
+  { shop: "漢生東路精品咖啡館", cat: "咖啡午茶", area: "新板特區", open: 9.5, close: 19.5, vip: false, w: 1, dishes: ["藝伎手沖咖啡", "開心果巴斯克", "小白咖啡", "提拉米蘇", "香草拿鐵"] },
+  { shop: "致理旁平價咖啡飲品", cat: "咖啡午茶", area: "新埔商圈", open: 8.0, close: 18.5, vip: false, w: 1, dishes: ["大杯拿鐵", "燻雞起司吐司", "美式咖啡", "巧克力厚片", "奶茶"] },
+  { shop: "浮洲藝術園區咖啡館", cat: "咖啡午茶", area: "浮洲商圈", open: 10.5, close: 19.0, vip: false, w: 1, dishes: ["拿鐵咖啡", "手工餅乾禮盒", "焦糖拿鐵", "乳酪蛋糕", "水果茶"] },
+  { shop: "大觀路特色午茶小館", cat: "咖啡午茶", area: "大觀路", open: 10.0, close: 18.5, vip: false, w: 1, dishes: ["黑糖拿鐵", "鬆餅", "美式咖啡", "起司蛋糕", "紅茶"] },
+  { shop: "中山路茶飲午茶店", cat: "咖啡午茶", area: "中山路", open: 10.0, close: 21.0, vip: false, w: 1, dishes: ["珍珠奶茶", "四季春青茶", "芝士奶蓋綠茶", "冬瓜仙草", "百香雙響炮"] },
+  { shop: "板橋車站甜點咖啡吧", cat: "咖啡午茶", area: "新板特區", open: 9.0, close: 21.5, vip: false, w: 1, dishes: ["北海道生乳捲", "拿鐵咖啡", "草莓千層派", "抹茶拿鐵", "可麗露"] },
+];
