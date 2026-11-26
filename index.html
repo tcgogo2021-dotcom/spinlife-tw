@@ -3,194 +3,200 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SpinLife 轉生活創意行銷廣告公司｜全國生活娛樂導流入口大廳</title>
+<title>SpinLife 轉生活｜全台吃喝玩樂・生活決策總部</title>
 <style>
   * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Microsoft JhengHei", sans-serif; }
-  body { margin: 0; padding: 18px 12px 36px; background: linear-gradient(135deg, #0f1021 0%, #1b2440 100%); color: #fff; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
-  .hero { text-align: center; max-width: 860px; margin-bottom: 20px; }
-  .brand-pill { display: inline-block; background: rgba(255, 215, 0, 0.15); border: 1px solid #ffd700; color: #ffd700; font-size: 12px; font-weight: bold; padding: 4px 14px; border-radius: 20px; margin-bottom: 8px; }
-  .hero h1 { margin: 0; font-size: 26px; color: #ffd700; text-shadow: 0 3px 14px rgba(255, 215, 0, 0.45); letter-spacing: 1px; }
-  .hero p { margin: 8px 0 0; font-size: 13px; color: #c8d0e8; line-height: 1.5; }
-  .grid-6 { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 14px; width: 100%; max-width: 960px; }
-  .hall-card { background: rgba(255, 255, 255, 0.07); border: 1.5px solid rgba(255, 255, 255, 0.16); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s; }
-  .hall-card.live { border-color: #ffd700; background: linear-gradient(145deg, rgba(233, 69, 96, 0.22), rgba(255, 215, 0, 0.12)); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4); }
-  .hall-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-  .hall-title { font-size: 18px; font-weight: 900; color: #fff; }
-  .hall-card.live .hall-title { color: #ffd700; }
-  .spec-badge { font-size: 11px; font-weight: bold; padding: 3px 8px; border-radius: 10px; background: rgba(255, 255, 255, 0.15); color: #ffe066; }
-  .hall-desc { font-size: 12px; color: #b8c2dc; line-height: 1.5; margin-bottom: 12px; }
-  .city-box { background: rgba(0, 0, 0, 0.28); border-radius: 10px; padding: 10px; }
-  .city-lbl { font-size: 11px; color: #ffd700; font-weight: bold; margin-bottom: 6px; }
-  .btn-go { display: block; width: 100%; text-align: center; background: #ffd700; color: #1a1a2e; font-size: 14px; font-weight: 900; padding: 10px; border-radius: 25px; text-decoration: none; box-shadow: 0 3px 0 #b39700; }
-  .status-soon { display: inline-block; font-size: 11px; color: #9aa5c4; background: rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 12px; }
-  .biz-bar { margin-top: 24px; width: 100%; max-width: 960px; background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.4); border-radius: 14px; padding: 14px; text-align: center; }
-  .biz-bar h3 { margin: 0 0 6px; font-size: 15px; color: #ffd700; }
-  .biz-bar p { margin: 0 0 10px; font-size: 12px; color: #d0d8ee; }
-  .biz-links { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
-  .btn-deck { background: #00b894; color: #fff; text-decoration: none; font-size: 13px; font-weight: bold; padding: 8px 16px; border-radius: 20px; }
-  .btn-line { background: #06c755; color: #fff; text-decoration: none; font-size: 13px; font-weight: bold; padding: 8px 16px; border-radius: 20px; }
-  .footer { margin-top: 18px; font-size: 11px; color: #7f8ab0; text-align: center; }
+  body { margin: 0; padding: 18px 12px 40px; background: linear-gradient(135deg, #10101e 0%, #1a233a 100%); color: #fff; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+  .hero { text-align: center; max-width: 680px; margin-bottom: 16px; }
+  .brand-badge { display: inline-block; background: rgba(255,215,0,0.16); border: 1px solid #ffd700; color: #ffd700; font-size: 11px; font-weight: bold; padding: 4px 12px; border-radius: 20px; margin-bottom: 8px; letter-spacing: 1px; }
+  .hero h1 { margin: 0; font-size: 26px; color: #ffd700; text-shadow: 0 3px 14px rgba(255,215,0,0.45); }
+  .hero p { margin: 6px 0 0; font-size: 13px; color: #c4cde0; line-height: 1.5; }
+  .milestone-bar { width: 100%; max-width: 680px; background: linear-gradient(90deg, rgba(255,215,0,0.18), rgba(233,69,96,0.22)); border: 1px solid rgba(255,215,0,0.45); border-radius: 12px; padding: 8px 12px; margin-bottom: 16px; text-align: center; font-size: 12px; color: #ffe066; font-weight: bold; }
+  .life-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; width: 100%; max-width: 680px; margin-bottom: 18px; }
+  .life-card { background: rgba(255,255,255,0.07); border: 1.5px solid rgba(255,215,0,0.35); border-radius: 16px; padding: 14px 10px; text-align: center; position: relative; transition: 0.2s; }
+  .life-card.active { background: linear-gradient(135deg, rgba(233,69,96,0.25), rgba(255,215,0,0.15)); border-color: #ffd700; box-shadow: 0 6px 20px rgba(233,69,96,0.25); }
+  .life-card.soon { opacity: 0.65; border-style: dashed; border-color: rgba(255,255,255,0.25); }
+  .life-tag { position: absolute; top: 8px; right: 8px; font-size: 10px; font-weight: bold; padding: 2px 7px; border-radius: 10px; }
+  .tag-live { background: #00b894; color: #fff; }
+  .tag-soon { background: rgba(255,255,255,0.15); color: #ccc; }
+  .life-icon { font-size: 30px; margin-bottom: 4px; }
+  .life-title { font-size: 16px; font-weight: 900; color: #ffd700; margin-bottom: 3px; }
+  .life-desc { font-size: 11px; color: #d0d7ea; line-height: 1.3; }
+  .selector-panel { width: 100%; max-width: 680px; background: rgba(255,255,255,0.08); border: 1.5px solid #ffd700; border-radius: 18px; padding: 16px 14px; box-shadow: 0 10px 28px rgba(0,0,0,0.45); }
+  .panel-title { font-size: 15px; font-weight: 900; color: #ffd700; margin: 0 0 10px; display: flex; align-items: center; gap: 6px; }
+  .city-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 12px; }
+  .city-btn { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 9px 4px; border-radius: 10px; font-size: 13px; font-weight: bold; cursor: pointer; transition: 0.2s; }
+  .city-btn.active { background: #ffd700; color: #1a1a2e; border-color: #ffd700; box-shadow: 0 3px 10px rgba(255,215,0,0.4); }
+  .district-box { background: rgba(15,25,45,0.65); border-radius: 12px; padding: 12px; border: 1px solid rgba(255,215,0,0.25); }
+  .dist-header { font-size: 12px; color: #ffe066; font-weight: bold; margin-bottom: 8px; }
+  .dist-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; }
+  .dist-link { display: block; text-align: center; padding: 9px 4px; border-radius: 10px; font-size: 12px; font-weight: bold; text-decoration: none; transition: 0.2s; }
+  .dist-link.live { background: linear-gradient(135deg, #e94560, #c0392b); color: #fff; border: 1.5px solid #ffd700; box-shadow: 0 3px 8px rgba(233,69,96,0.4); }
+  .dist-link.live:hover { transform: translateY(-2px); box-shadow: 0 5px 14px rgba(255,215,0,0.5); }
+  .dist-link.prep { background: rgba(255,255,255,0.06); color: #8c96b5; border: 1px dashed rgba(255,255,255,0.2); cursor: pointer; }
+  .biz-banner { width: 100%; max-width: 680px; margin-top: 18px; background: linear-gradient(135deg, #2c1e05, #1a1a2e); border: 1.5px solid #ffd700; border-radius: 16px; padding: 14px; text-align: center; }
+  .biz-banner h3 { margin: 0 0 6px; font-size: 15px; color: #ffd700; }
+  .biz-banner p { margin: 0 0 10px; font-size: 12px; color: #d5dce8; line-height: 1.4; }
+  .biz-btns { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+  .btn-gold { background: #ffd700; color: #1a1a2e; text-decoration: none; font-size: 12px; font-weight: 900; padding: 8px 16px; border-radius: 20px; }
+  .btn-line { background: #00b894; color: #fff; text-decoration: none; font-size: 12px; font-weight: 900; padding: 8px 16px; border-radius: 20px; }
+  .footer { margin-top: 20px; text-align: center; font-size: 11px; color: #7f89a8; }
 </style>
 </head>
 <body>
+
 <div class="hero">
-  <span class="brand-pill">🎰 SpinLife 轉生活創意行銷廣告公司</span>
-  <h1>全國生活娛樂導流入口大廳</h1>
-  <p>解決現代人「不知道吃什麼、去哪玩、買什麼」的選擇困難症<br>打造「食・衣・住・行・育・樂」六大遊戲化生活決策矩陣</p>
-  <div style="display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin-top:12px;">
-    <div style="background:rgba(0,184,148,0.18); border:1px solid #00b894; color:#55efc4; font-size:12px; font-weight:bold; padding:5px 12px; border-radius:20px;">🟢 目前在線：<span id="onlineNum">128</span> 人正在轉</div>
-    <div style="background:rgba(255,215,0,0.15); border:1px solid #ffd700; color:#ffe066; font-size:12px; font-weight:bold; padding:5px 12px; border-radius:20px;">🔥 平台累積造訪：<span id="totalNum">讀取中...</span> 人次</div>
+  <span class="brand-badge">SPINLIFE 轉生活・全台生活決策引擎</span>
+  <h1>🎰 轉生活 SpinLife</h1>
+  <p>選擇困難症的終極救星！一鍵轉出你的下一餐、下一杯與下一趟旅程</p>
+</div>
+
+<div class="milestone-bar">
+  🏆 台北市 12 行政區全制霸達成！已收錄 1,200 家名店 × 6,000 道招牌菜色
+</div>
+
+<div class="life-grid">
+  <div class="life-card active">
+    <span class="life-tag tag-live">🟢 12區全開</span>
+    <div class="life-icon">🍽️</div>
+    <div class="life-title">01. 食・每日美味館</div>
+    <div class="life-desc">全台各縣市百大名店<br>即時營業過濾・一鍵導航</div>
+  </div>
+  <div class="life-card soon" onclick="alert('【02. 喝・手搖咖啡館】即將上線，敬請期待！')">
+    <span class="life-tag tag-soon">🔒 籌備中</span>
+    <div class="life-icon">🧋</div>
+    <div class="life-title">02. 喝・手搖咖啡館</div>
+    <div class="life-desc">全台手搖飲・職人咖啡<br>甜度冰塊隨機特調</div>
+  </div>
+  <div class="life-card soon" onclick="alert('【03. 玩・週末去哪兒】即將上線，敬請期待！')">
+    <span class="life-tag tag-soon">🔒 籌備中</span>
+    <div class="life-icon">🎡</div>
+    <div class="life-title">03. 玩・週末去哪兒</div>
+    <div class="life-desc">約會景點・親子秘境<br>說走就走半日遊</div>
+  </div>
+  <div class="life-card soon" onclick="alert('【04. 宿・度假飯店館】即將上線，敬請期待！')">
+    <span class="life-tag tag-soon">🔒 籌備中</span>
+    <div class="life-icon">🏨</div>
+    <div class="life-title">04. 宿・度假飯店館</div>
+    <div class="life-desc">溫泉湯屋・特色民宿<br>週末充電住宿推薦</div>
   </div>
 </div>
-<div class="grid-6">
-  <div class="hall-card live">
-    <div>
-      <div class="hall-top"><span class="hall-title">🍜【食】每日美味館</span><span class="spec-badge">3 軸拉霸機</span></div>
-      <div class="hall-desc">解決三餐宵夜選擇困難！一鍵轉出「招牌菜色 × 在地好店 × 即時營業狀態」，點擊直達 Google 地圖導航。</div>
-    </div>
-    <div class="city-box">
-      <div class="city-lbl">📍 選擇城市與營運行政區：</div>
-      <select id="citySel" onchange="updateDistOptions()" style="width:100%;padding:8px;border-radius:8px;border:none;font-weight:bold;margin-bottom:6px;background:#fff;color:#1a1a2e;font-size:13px;">
-        <option value="台中市">🏙️ 台中市（14 大戰區全開城）</option>
-        <option value="台北市">🏙️ 台北市（大安區已開城・12 區版圖）</option>
-      </select>
-      <select id="distSel" style="width:100%;padding:8px;border-radius:8px;border:none;font-weight:bold;margin-bottom:8px;background:#fff;color:#1a1a2e;font-size:13px;">
-        <option value="SpinLife 轉生活/01_食_每日美味館/台中市/東區/東區百大美食拉霸機.html">📍 東區</option>
-        <option value="SpinLife 轉生活/01_食_每日美味館/台中市/南區/南區百大美食拉霸機.html">📍 南區</option>
-        <option value="SpinLife 轉生活/01_食_每日美味館/台中市/西區/西區百大美食拉霸機.html">📍 西區</option>
-        <option value="SpinLife 轉生活/01_食_每日美味館/台中市/北區/北區百大美食拉霸機.html">📍 北區</option>
-        <option value="SpinLife 轉生活/01_食_每日美味館/台中市/中區/中區百大美食拉霸機.html">📍 中區</option>
-        <option value="SpinLife 轉生活/01_食_每日美味館/台中市/北屯區/北屯百大美食拉霸機.html">📍 北屯區</option>
-        <option value="SpinLife 轉生活/01_食_每日美味館/台中市/西屯區/西屯百大美食拉霸機.html">📍 西屯區</option>
-        <option value="SpinLife 轉生活/01_食_每日美味館/台中市/南屯區/南屯百大美食拉霸機.html">📍 南屯區</option>
-        <option value="SpinLife 轉生活/01_食_每日美味館/台中市/大里區/大里百大美食拉霸機.html">📍 大里區</option>
-        <option value="SpinLife 轉生活/01_食_每日美味館/台中市/太平區/太平百大美食拉霸機.html">📍 太平區</option>
-        <option value="SpinLife 轉生活/01_食_每日美味館/台中市/豐原區/豐原百大美食拉霸機.html">📍 豐原區</option>
-        <option value="SpinLife 轉生活/01_食_每日美味館/台中市/沙鹿區/沙鹿百大美食拉霸機.html">📍 沙鹿區</option>
-        <option value="SpinLife 轉生活/01_食_每日美味館/台中市/烏日區/烏日百大美食拉霸機.html">📍 烏日區</option>
-        <option value="SpinLife 轉生活/01_食_每日美味館/台中市/潭子區/潭子百大美食拉霸機.html">📍 潭子區</option>
-      </select>
-      <button class="btn-go" style="border:none;cursor:pointer;" onclick="launchHall()">🎰 立即啟動該區美食拉霸機</button>
-    </div>
+<div class="selector-panel">
+  <div class="panel-title">📍 選擇縣市與行政區（開啟專屬百大美食拉霸機）</div>
+  <div class="city-tabs" id="cityTabs">
+    <button class="city-btn active" onclick="selectCity('台北市', this)">🏆 台北市</button>
+    <button class="city-btn" onclick="selectCity('新北市', this)">新北市</button>
+    <button class="city-btn" onclick="selectCity('桃園市', this)">桃園市</button>
+    <button class="city-btn" onclick="selectCity('台中市', this)">台中市</button>
+    <button class="city-btn" onclick="selectCity('台南市', this)">台南市</button>
+    <button class="city-btn" onclick="selectCity('高雄市', this)">高雄市</button>
   </div>
-  <div class="hall-card">
-    <div>
-      <div class="hall-top"><span class="hall-title">👗【衣】風格穿搭館</span><span class="spec-badge">3×3 九宮格連線</span></div>
-      <div class="hall-desc">集合在地服飾店、美髮沙龍、美甲美睫與眼鏡行。轉出 3 連線即解鎖店家專屬折扣券與造型靈感。</div>
-    </div>
-    <div><span class="status-soon">✨ 招商籌備中</span></div>
-  </div>
-  <div class="hall-card">
-    <div>
-      <div class="hall-top"><span class="hall-title">🏠【住】居家生活館</span><span class="spec-badge">幸運大轉盤</span></div>
-      <div class="hall-desc">嚴選居家清潔、水電冷氣維修、寵物美容與特色民宿，一鍵轉出附近即時服務與專屬預約優惠。</div>
-    </div>
-    <div><span class="status-soon">✨ 招商籌備中</span></div>
-  </div>
-  <div class="hall-card">
-    <div>
-      <div class="hall-top"><span class="hall-title">🚗【行】愛車順行館</span><span class="spec-badge">翻牌刮刮樂</span></div>
-      <div class="hall-desc">涵蓋洗車美容、輪胎保養、機車行與加油站，日常順路刮出免費打蠟、機油折扣與咖啡兌換券。</div>
-    </div>
-    <div><span class="status-soon">✨ 招商籌備中</span></div>
-  </div>
-  <div class="hall-card">
-    <div>
-      <div class="hall-top"><span class="hall-title">📚【育】成長探索館</span><span class="spec-badge">3 軸拉霸機</span></div>
-      <div class="hall-desc">網羅才藝教室、運動健身房、語言中心與親子共學空間，轉出週末體驗課程與免費試聽禮遇。</div>
-    </div>
-    <div><span class="status-soon">✨ 招商籌備中</span></div>
-  </div>
-  <div class="hall-card">
-    <div>
-      <div class="hall-top"><span class="hall-title">🎡【樂】休閒玩樂館</span><span class="spec-badge">3×3 九宮格連線</span></div>
-      <div class="hall-desc">網羅密室逃脫、KTV、桌遊店、溫泉與親子樂園，週末揪團不知去哪玩？一鍵連線決定今日行程！</div>
-    </div>
-    <div><span class="status-soon">✨ 招商籌備中</span></div>
+  <div class="district-box">
+    <div class="dist-header" id="distHeader">台北市・12 行政區全制霸（點擊直接進入開轉）：</div>
+    <div class="dist-grid" id="distGrid"></div>
   </div>
 </div>
-<div class="biz-bar">
-  <h3>🤝 商家合作與創始席位招募（每區每類限量 20 席・廣告看板限量 10 席）</h3>
-  <p>誠摯邀請各地優質品牌進駐！歡迎在地商家洽談曝光合作，或業務夥伴了解高分潤創業方案。</p>
-  <div class="biz-links">
-    <a class="btn-deck" href="javascript:void(0)" onclick="location.href=encodeURI('SpinLife 轉生活/99_公司總部與招商資料/轉生活創業與招商簡報.html')">📊 開啟隨身招商簡報</a>
-    <a class="btn-line" href="https://lin.ee" target="_blank">💬 加創辦人 LINE 洽談合作</a>
+
+<div class="biz-banner">
+  <h3>👑 創始商家 VIP 黃金席位・全台火熱招募中</h3>
+  <p>每區 5 大分類各限量 20 席！免費收錄招牌菜色、享轉輪加權曝光與左右黃金看板廣告位</p>
+  <div class="biz-btns">
+    <a class="btn-gold" href="javascript:void(0)" onclick="location.href=encodeURI('SpinLife 轉生活/99_公司總部與招商資料/轉生活創業與招商簡報.html')">📊 查看招商簡報</a>
+    <a class="btn-line" href="https://lin.ee" target="_blank">💬 加官方 LINE 洽談進駐</a>
   </div>
 </div>
-<div class="footer">© SpinLife 轉生活創意行銷廣告公司｜全國在地生活決策娛樂平台</div>
+
+<div class="footer">
+  © 2026 SpinLife 轉生活｜全台吃喝玩樂生活決策總部
+</div>
+
 <script>
 const cityDistricts = {
-  "台中市": [
-    { name: "📍 東區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/東區/東區百大美食拉霸機.html", live: true },
-    { name: "📍 南區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/南區/南區百大美食拉霸機.html", live: true },
-    { name: "📍 西區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/西區/西區百大美食拉霸機.html", live: true },
-    { name: "📍 北區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/北區/北區百大美食拉霸機.html", live: true },
-    { name: "📍 中區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/中區/中區百大美食拉霸機.html", live: true },
-    { name: "📍 北屯區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/北屯區/北屯百大美食拉霸機.html", live: true },
-    { name: "📍 西屯區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/西屯區/西屯百大美食拉霸機.html", live: true },
-    { name: "📍 南屯區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/南屯區/南屯百大美食拉霸機.html", live: true },
-    { name: "📍 大里區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/大里區/大里百大美食拉霸機.html", live: true },
-    { name: "📍 太平區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/太平區/太平百大美食拉霸機.html", live: true },
-    { name: "📍 豐原區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/豐原區/豐原百大美食拉霸機.html", live: true },
-    { name: "📍 沙鹿區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/沙鹿區/沙鹿百大美食拉霸機.html", live: true },
-    { name: "📍 烏日區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/烏日區/烏日百大美食拉霸機.html", live: true },
-    { name: "📍 潭子區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/潭子區/潭子百大美食拉霸機.html", live: true }
-  ],
   "台北市": [
-    { name: "🔥 大安區（首發開城）", url: "SpinLife 轉生活/01_食_每日美味館/台北市/大安區/大安百大美食拉霸機.html", live: true },
-    { name: "⏳ 信義區（建置中）", url: "SpinLife 轉生活/01_食_每日美味館/台北市/信義區/信義百大美食拉霸機.html", live: false },
-    { name: "⏳ 中山區（建置中）", url: "SpinLife 轉生活/01_食_每日美味館/台北市/中山區/中山百大美食拉霸機.html", live: false },
-    { name: "⏳ 松山區（建置中）", url: "SpinLife 轉生活/01_食_每日美味館/台北市/松山區/松山百大美食拉霸機.html", live: false },
-    { name: "⏳ 中正區（建置中）", url: "SpinLife 轉生活/01_食_每日美味館/台北市/中正區/中正百大美食拉霸機.html", live: false },
-    { name: "⏳ 萬華區（建置中）", url: "SpinLife 轉生活/01_食_每日美味館/台北市/萬華區/萬華百大美食拉霸機.html", live: false },
-    { name: "⏳ 大同區（建置中）", url: "SpinLife 轉生活/01_食_每日美味館/台北市/大同區/大同百大美食拉霸機.html", live: false },
-    { name: "⏳ 士林區（建置中）", url: "SpinLife 轉生活/01_食_每日美味館/台北市/士林區/士林百大美食拉霸機.html", live: false },
-    { name: "⏳ 北投區（建置中）", url: "SpinLife 轉生活/01_食_每日美味館/台北市/北投區/北投百大美食拉霸機.html", live: false },
-    { name: "⏳ 內湖區（建置中）", url: "SpinLife 轉生活/01_食_每日美味館/台北市/內湖區/內湖百大美食拉霸機.html", live: false },
-    { name: "⏳ 南港區（建置中）", url: "SpinLife 轉生活/01_食_每日美味館/台北市/南港區/南港百大美食拉霸機.html", live: false },
-    { name: "⏳ 文山區（建置中）", url: "SpinLife 轉生活/01_食_每日美味館/台北市/文山區/文山百大美食拉霸機.html", live: false }
+    { name: "🔥 大安區", url: "SpinLife 轉生活/01_食_每日美味館/台北市/大安區/大安百大美食拉霸機.html", live: true },
+    { name: "🔥 信義區", url: "SpinLife 轉生活/01_食_每日美味館/台北市/信義區/信義百大美食拉霸機.html", live: true },
+    { name: "🔥 中山區", url: "SpinLife 轉生活/01_食_每日美味館/台北市/中山區/中山百大美食拉霸機.html", live: true },
+    { name: "🔥 松山區", url: "SpinLife 轉生活/01_食_每日美味館/台北市/松山區/松山百大美食拉霸機.html", live: true },
+    { name: "🔥 中正區", url: "SpinLife 轉生活/01_食_每日美味館/台北市/中正區/中正百大美食拉霸機.html", live: true },
+    { name: "🔥 萬華區", url: "SpinLife 轉生活/01_食_每日美味館/台北市/萬華區/萬華百大美食拉霸機.html", live: true },
+    { name: "🔥 大同區", url: "SpinLife 轉生活/01_食_每日美味館/台北市/大同區/大同百大美食拉霸機.html", live: true },
+    { name: "🔥 士林區", url: "SpinLife 轉生活/01_食_每日美味館/台北市/士林區/士林百大美食拉霸機.html", live: true },
+    { name: "🔥 北投區", url: "SpinLife 轉生活/01_食_每日美味館/台北市/北投區/北投百大美食拉霸機.html", live: true },
+    { name: "🔥 內湖區", url: "SpinLife 轉生活/01_食_每日美味館/台北市/內湖區/內湖百大美食拉霸機.html", live: true },
+    { name: "🔥 南港區", url: "SpinLife 轉生活/01_食_每日美味館/台北市/南港區/南港百大美食拉霸機.html", live: true },
+    { name: "🔥 文山區", url: "SpinLife 轉生活/01_食_每日美味館/台北市/文山區/文山百大美食拉霸機.html", live: true }
+  ],
+  "新北市": [
+    { name: "板橋區（籌備中）", live: false },
+    { name: "三重區（籌備中）", live: false },
+    { name: "中和區（籌備中）", live: false },
+    { name: "永和區（籌備中）", live: false },
+    { name: "新莊區（籌備中）", live: false },
+    { name: "新店區（籌備中）", live: false },
+    { name: "土城區（籌備中）", live: false },
+    { name: "蘆洲區（籌備中）", live: false },
+    { name: "汐止區（籌備中）", live: false }
+  ],
+  "桃園市": [
+    { name: "桃園區（籌備中）", live: false },
+    { name: "中壢區（籌備中）", live: false },
+    { name: "平鎮區（籌備中）", live: false },
+    { name: "八德區（籌備中）", live: false },
+    { name: "蘆竹區（籌備中）", live: false },
+    { name: "龜山區（籌備中）", live: false }
+  ],
+  "台中市": [
+    { name: "西屯區（籌備中）", live: false },
+    { name: "北屯區（籌備中）", live: false },
+    { name: "南屯區（籌備中）", live: false },
+    { name: "北區（籌備中）", live: false },
+    { name: "西區（籌備中）", live: false },
+    { name: "中區（籌備中）", live: false },
+    { name: "南區（籌備中）", live: false },
+    { name: "東區（籌備中）", live: false },
+    { name: "逢甲商圈（籌備中）", live: false }
+  ],
+  "台南市": [
+    { name: "中西區（籌備中）", live: false },
+    { name: "東區（籌備中）", live: false },
+    { name: "安平區（籌備中）", live: false },
+    { name: "北區（籌備中）", live: false },
+    { name: "永康區（籌備中）", live: false },
+    { name: "南區（籌備中）", live: false }
+  ],
+  "高雄市": [
+    { name: "左營區（籌備中）", live: false },
+    { name: "鼓山區（籌備中）", live: false },
+    { name: "三民區（籌備中）", live: false },
+    { name: "苓雅區（籌備中）", live: false },
+    { name: "前鎮區（籌備中）", live: false },
+    { name: "新興區（籌備中）", live: false }
   ]
 };
-function updateDistOptions() {
-  const city = document.getElementById("citySel").value;
-  const distSel = document.getElementById("distSel");
+
+function selectCity(city, btnEl) {
+  const btns = document.querySelectorAll(".city-btn");
+  for (let i = 0; i < btns.length; i++) btns[i].classList.remove("active");
+  if (btnEl) btnEl.classList.add("active");
+
   const list = cityDistricts[city] || [];
+  document.getElementById("distHeader").innerText = city === "台北市"
+    ? "🏆 台北市・12 行政區全制霸（點擊直接進入開轉）："
+    : city + "・選擇行政區（籌備中區域可加 LINE 搶先卡位創始席）：";
+
   let html = "";
   for (let i = 0; i < list.length; i++) {
-    html += '<option value="' + list[i].url + '" data-live="' + list[i].live + '">' + list[i].name + '</option>';
+    const d = list[i];
+    if (d.live) {
+      html += '<a class="dist-link live" href="javascript:void(0)" onclick="location.href=encodeURI(\'' + d.url + '\')">' + d.name + '</a>';
+    } else {
+      html += '<div class="dist-link prep" onclick="alert(\'【' + city + d.name.replace("（籌備中）", "") + '】百大美食資料庫建置中！若您是當地美食名店，歡迎點擊下方按鈕加 LINE 搶先卡位創始 VIP 席位！\')">' + d.name + '</div>';
+    }
   }
-  distSel.innerHTML = html;
+  document.getElementById("distGrid").innerHTML = html;
 }
 
-function launchHall() {
-  const distSel = document.getElementById("distSel");
-  const opt = distSel.options[distSel.selectedIndex];
-  if (opt.getAttribute("data-live") === "false") {
-    alert("🚧 該行政區百大名店正在火速建置中！歡迎先體驗「台北市大安區」或「台中市 14 大戰區」喔！");
-    return;
-  }
-  location.href = encodeURI(distSel.value);
-}
-
-(function(){
-  const baseTotal = 18650;
-  fetch('https://counterapi.dev')
-    .then(r => r.json())
-    .then(d => { document.getElementById('totalNum').innerText = (baseTotal + (d.count || 1)).toLocaleString(); })
-    .catch(() => { document.getElementById('totalNum').innerText = (baseTotal + Math.floor(Math.random()*50)).toLocaleString(); });
-
-  function updateOnline() {
-    const h = new Date().getHours();
-    let base = 65;
-    if (h >= 11 && h <= 13) base = 240;
-    else if (h >= 17 && h <= 20) base = 285;
-    else if (h >= 21 || h <= 1) base = 160;
-    const live = base + Math.floor(Math.random() * 28) - 10;
-    document.getElementById('onlineNum').innerText = live;
-  }
-  updateOnline();
-  setInterval(updateOnline, 6000);
-})();
+selectCity("台北市", document.querySelector(".city-btn.active"));
 </script>
 </body>
 </html>
