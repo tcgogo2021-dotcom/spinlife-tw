@@ -37,7 +37,7 @@
   <span class="brand-pill">🎰 SpinLife 轉生活創意行銷廣告公司</span>
   <h1>全國生活娛樂導流入口大廳</h1>
   <p>解決現代人「不知道吃什麼、去哪玩、買什麼」的選擇困難症<br>打造「食・衣・住・行・育・樂」六大遊戲化生活決策矩陣</p>
-   <div style="display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin-top:12px;">
+  <div style="display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin-top:12px;">
     <div style="background:rgba(0,184,148,0.18); border:1px solid #00b894; color:#55efc4; font-size:12px; font-weight:bold; padding:5px 12px; border-radius:20px;">🟢 目前在線：<span id="onlineNum">128</span> 人正在轉</div>
     <div style="background:rgba(255,215,0,0.15); border:1px solid #ffd700; color:#ffe066; font-size:12px; font-weight:bold; padding:5px 12px; border-radius:20px;">🔥 平台累積造訪：<span id="totalNum">讀取中...</span> 人次</div>
   </div>
@@ -50,8 +50,9 @@
     </div>
     <div class="city-box">
       <div class="city-lbl">📍 選擇城市與營運行政區：</div>
-      <select id="citySel" style="width:100%;padding:8px;border-radius:8px;border:none;font-weight:bold;margin-bottom:6px;background:#fff;color:#1a1a2e;font-size:13px;">
-        <option value="台中市">🏙️ 台中市</option>
+      <select id="citySel" onchange="updateDistOptions()" style="width:100%;padding:8px;border-radius:8px;border:none;font-weight:bold;margin-bottom:6px;background:#fff;color:#1a1a2e;font-size:13px;">
+        <option value="台中市">🏙️ 台中市（14 大戰區全開城）</option>
+        <option value="台北市">🏙️ 台北市（大安區已開城・12 區版圖）</option>
       </select>
       <select id="distSel" style="width:100%;padding:8px;border-radius:8px;border:none;font-weight:bold;margin-bottom:8px;background:#fff;color:#1a1a2e;font-size:13px;">
         <option value="SpinLife 轉生活/01_食_每日美味館/台中市/東區/東區百大美食拉霸機.html">📍 東區</option>
@@ -61,16 +62,15 @@
         <option value="SpinLife 轉生活/01_食_每日美味館/台中市/中區/中區百大美食拉霸機.html">📍 中區</option>
         <option value="SpinLife 轉生活/01_食_每日美味館/台中市/北屯區/北屯百大美食拉霸機.html">📍 北屯區</option>
         <option value="SpinLife 轉生活/01_食_每日美味館/台中市/西屯區/西屯百大美食拉霸機.html">📍 西屯區</option>
-        <option value="SpinLife 轉生活/01_食_每日美味館/台中市/南屯區/南屯百大美食拉霸機.html">📍 南屯區</option>  
+        <option value="SpinLife 轉生活/01_食_每日美味館/台中市/南屯區/南屯百大美食拉霸機.html">📍 南屯區</option>
         <option value="SpinLife 轉生活/01_食_每日美味館/台中市/大里區/大里百大美食拉霸機.html">📍 大里區</option>
         <option value="SpinLife 轉生活/01_食_每日美味館/台中市/太平區/太平百大美食拉霸機.html">📍 太平區</option>
         <option value="SpinLife 轉生活/01_食_每日美味館/台中市/豐原區/豐原百大美食拉霸機.html">📍 豐原區</option>
         <option value="SpinLife 轉生活/01_食_每日美味館/台中市/沙鹿區/沙鹿百大美食拉霸機.html">📍 沙鹿區</option>
         <option value="SpinLife 轉生活/01_食_每日美味館/台中市/烏日區/烏日百大美食拉霸機.html">📍 烏日區</option>
         <option value="SpinLife 轉生活/01_食_每日美味館/台中市/潭子區/潭子百大美食拉霸機.html">📍 潭子區</option>
-
       </select>
-      <button class="btn-go" style="border:none;cursor:pointer;" onclick="location.href=encodeURI(document.getElementById('distSel').value)">🎰 立即啟動該區美食拉霸機</button>
+      <button class="btn-go" style="border:none;cursor:pointer;" onclick="launchHall()">🎰 立即啟動該區美食拉霸機</button>
     </div>
   </div>
   <div class="hall-card">
@@ -113,12 +113,65 @@
   <h3>🤝 商家合作與創始席位招募（每區每類限量 20 席・廣告看板限量 10 席）</h3>
   <p>誠摯邀請各地優質品牌進駐！歡迎在地商家洽談曝光合作，或業務夥伴了解高分潤創業方案。</p>
   <div class="biz-links">
-    <a class="btn-deck" href="javascript:void(0)" onclick="location.href=encodeURI('SpinLife 轉生活/99_公司總部與招商資料/轉生活創業與招商簡報.html')">📊 開啟隨身招商簡報 </a>
-    <a class="btn-line" href="https://lin.ee/9jDwxqQ" target="_blank">💬 加創辦人 LINE 洽談合作</a>
+    <a class="btn-deck" href="javascript:void(0)" onclick="location.href=encodeURI('SpinLife 轉生活/99_公司總部與招商資料/轉生活創業與招商簡報.html')">📊 開啟隨身招商簡報</a>
+    <a class="btn-line" href="https://lin.ee" target="_blank">💬 加創辦人 LINE 洽談合作</a>
   </div>
 </div>
 <div class="footer">© SpinLife 轉生活創意行銷廣告公司｜全國在地生活決策娛樂平台</div>
- <script>
+<script>
+const cityDistricts = {
+  "台中市": [
+    { name: "📍 東區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/東區/東區百大美食拉霸機.html", live: true },
+    { name: "📍 南區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/南區/南區百大美食拉霸機.html", live: true },
+    { name: "📍 西區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/西區/西區百大美食拉霸機.html", live: true },
+    { name: "📍 北區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/北區/北區百大美食拉霸機.html", live: true },
+    { name: "📍 中區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/中區/中區百大美食拉霸機.html", live: true },
+    { name: "📍 北屯區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/北屯區/北屯百大美食拉霸機.html", live: true },
+    { name: "📍 西屯區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/西屯區/西屯百大美食拉霸機.html", live: true },
+    { name: "📍 南屯區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/南屯區/南屯百大美食拉霸機.html", live: true },
+    { name: "📍 大里區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/大里區/大里百大美食拉霸機.html", live: true },
+    { name: "📍 太平區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/太平區/太平百大美食拉霸機.html", live: true },
+    { name: "📍 豐原區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/豐原區/豐原百大美食拉霸機.html", live: true },
+    { name: "📍 沙鹿區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/沙鹿區/沙鹿百大美食拉霸機.html", live: true },
+    { name: "📍 烏日區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/烏日區/烏日百大美食拉霸機.html", live: true },
+    { name: "📍 潭子區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/潭子區/潭子百大美食拉霸機.html", live: true }
+  ],
+  "台北市": [
+    { name: "🔥 大安區（首發開城）", url: "SpinLife 轉生活/01_食_每日美味館/台北市/大安區/大安百大美食拉霸機.html", live: true },
+    { name: "⏳ 信義區（建置中）", url: "SpinLife 轉生活/01_食_每日美味館/台北市/信義區/信義百大美食拉霸機.html", live: false },
+    { name: "⏳ 中山區（建置中）", url: "SpinLife 轉生活/01_食_每日美味館/台北市/中山區/中山百大美食拉霸機.html", live: false },
+    { name: "⏳ 松山區（建置中）", url: "SpinLife 轉生活/01_食_每日美味館/台北市/松山區/松山百大美食拉霸機.html", live: false },
+    { name: "⏳ 中正區（建置中）", url: "SpinLife 轉生活/01_食_每日美味館/台北市/中正區/中正百大美食拉霸機.html", live: false },
+    { name: "⏳ 萬華區（建置中）", url: "SpinLife 轉生活/01_食_每日美味館/台北市/萬華區/萬華百大美食拉霸機.html", live: false },
+    { name: "⏳ 大同區（建置中）", url: "SpinLife 轉生活/01_食_每日美味館/台北市/大同區/大同百大美食拉霸機.html", live: false },
+    { name: "⏳ 士林區（建置中）", url: "SpinLife 轉生活/01_食_每日美味館/台北市/士林區/士林百大美食拉霸機.html", live: false },
+    { name: "⏳ 北投區（建置中）", url: "SpinLife 轉生活/01_食_每日美味館/台北市/北投區/北投百大美食拉霸機.html", live: false },
+    { name: "⏳ 內湖區（建置中）", url: "SpinLife 轉生活/01_食_每日美味館/台北市/內湖區/內湖百大美食拉霸機.html", live: false },
+    { name: "⏳ 南港區（建置中）", url: "SpinLife 轉生活/01_食_每日美味館/台北市/南港區/南港百大美食拉霸機.html", live: false },
+    { name: "⏳ 文山區（建置中）", url: "SpinLife 轉生活/01_食_每日美味館/台北市/文山區/文山百大美食拉霸機.html", live: false }
+  ]
+};
+function updateDistOptions() {
+  const city = document.getElementById("citySel").value;
+  const distSel = document.getElementById("distSel");
+  const list = cityDistricts[city] || [];
+  let html = "";
+  for (let i = 0; i < list.length; i++) {
+    html += '<option value="' + list[i].url + '" data-live="' + list[i].live + '">' + list[i].name + '</option>';
+  }
+  distSel.innerHTML = html;
+}
+
+function launchHall() {
+  const distSel = document.getElementById("distSel");
+  const opt = distSel.options[distSel.selectedIndex];
+  if (opt.getAttribute("data-live") === "false") {
+    alert("🚧 該行政區百大名店正在火速建置中！歡迎先體驗「台北市大安區」或「台中市 14 大戰區」喔！");
+    return;
+  }
+  location.href = encodeURI(distSel.value);
+}
+
 (function(){
   const baseTotal = 18650;
   fetch('https://counterapi.dev')
