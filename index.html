@@ -52,15 +52,15 @@
 </div>
 
 <div class="milestone-bar">
-  🏆 台北市 12 行政區全制霸達成！已收錄 1,200 家名店 × 6,000 道招牌菜色
+  🏆 台北市 × 台中市 雙核心大滿貫！收錄超過 2,400 家名店 × 12,000 道招牌菜
 </div>
 
 <div class="life-grid">
   <div class="life-card active">
-    <span class="life-tag tag-live">🟢 12區全開</span>
+    <span class="life-tag tag-live">🟢 雙城全開</span>
     <div class="life-icon">🍽️</div>
     <div class="life-title">01. 食・每日美味館</div>
-    <div class="life-desc">全台各縣市百大名店<br>即時營業過濾・一鍵導航</div>
+    <div class="life-desc">台北 12 區 × 台中全區<br>即時營業過濾・一鍵導航</div>
   </div>
   <div class="life-card soon" onclick="alert('【02. 喝・手搖咖啡館】即將上線，敬請期待！')">
     <span class="life-tag tag-soon">🔒 籌備中</span>
@@ -84,15 +84,15 @@
 <div class="selector-panel">
   <div class="panel-title">📍 選擇縣市與行政區（開啟專屬百大美食拉霸機）</div>
   <div class="city-tabs" id="cityTabs">
-    <button class="city-btn active" onclick="selectCity('台北市', this)">🏆 台北市</button>
+    <button class="city-btn active" onclick="selectCity('台北市', this)">🏆 台北市 (12區)</button>
+    <button class="city-btn" onclick="selectCity('台中市', this)">🏆 台中市 (14區)</button>
     <button class="city-btn" onclick="selectCity('新北市', this)">新北市</button>
     <button class="city-btn" onclick="selectCity('桃園市', this)">桃園市</button>
-    <button class="city-btn" onclick="selectCity('台中市', this)">台中市</button>
     <button class="city-btn" onclick="selectCity('台南市', this)">台南市</button>
     <button class="city-btn" onclick="selectCity('高雄市', this)">高雄市</button>
   </div>
   <div class="district-box">
-    <div class="dist-header" id="distHeader">台北市・12 行政區全制霸（點擊直接進入開轉）：</div>
+    <div class="dist-header" id="distHeader">🏆 台北市・12 行政區全制霸（點擊直接進入開轉）：</div>
     <div class="dist-grid" id="distGrid"></div>
   </div>
 </div>
@@ -126,6 +126,22 @@ const cityDistricts = {
     { name: "🔥 南港區", url: "SpinLife 轉生活/01_食_每日美味館/台北市/南港區/南港百大美食拉霸機.html", live: true },
     { name: "🔥 文山區", url: "SpinLife 轉生活/01_食_每日美味館/台北市/文山區/文山百大美食拉霸機.html", live: true }
   ],
+  "台中市": [
+    { name: "🔥 北屯區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/北屯區/北屯百大美食拉霸機.html", live: true },
+    { name: "🔥 西屯區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/西屯區/西屯百大美食拉霸機.html", live: true },
+    { name: "🔥 南屯區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/南屯區/南屯百大美食拉霸機.html", live: true },
+    { name: "🔥 北區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/北區/北區百大美食拉霸機.html", live: true },
+    { name: "🔥 西區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/西區/西區百大美食拉霸機.html", live: true },
+    { name: "🔥 中區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/中區/中區百大美食拉霸機.html", live: true },
+    { name: "🔥 南區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/南區/南區百大美食拉霸機.html", live: true },
+    { name: "🔥 東區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/東區/東區百大美食拉霸機.html", live: true },
+    { name: "🔥 太平區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/太平區/太平百大美食拉霸機.html", live: true },
+    { name: "🔥 大里區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/大里區/大里百大美食拉霸機.html", live: true },
+    { name: "🔥 豐原區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/豐原區/豐原百大美食拉霸機.html", live: true },
+    { name: "🔥 烏日區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/烏日區/烏日百大美食拉霸機.html", live: true },
+    { name: "🔥 潭子區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/潭子區/潭子百大美食拉霸機.html", live: true },
+    { name: "🔥 大雅區", url: "SpinLife 轉生活/01_食_每日美味館/台中市/大雅區/大雅百大美食拉霸機.html", live: true }
+  ],
   "新北市": [
     { name: "板橋區（籌備中）", live: false },
     { name: "三重區（籌備中）", live: false },
@@ -144,17 +160,6 @@ const cityDistricts = {
     { name: "八德區（籌備中）", live: false },
     { name: "蘆竹區（籌備中）", live: false },
     { name: "龜山區（籌備中）", live: false }
-  ],
-  "台中市": [
-    { name: "西屯區（籌備中）", live: false },
-    { name: "北屯區（籌備中）", live: false },
-    { name: "南屯區（籌備中）", live: false },
-    { name: "北區（籌備中）", live: false },
-    { name: "西區（籌備中）", live: false },
-    { name: "中區（籌備中）", live: false },
-    { name: "南區（籌備中）", live: false },
-    { name: "東區（籌備中）", live: false },
-    { name: "逢甲商圈（籌備中）", live: false }
   ],
   "台南市": [
     { name: "中西區（籌備中）", live: false },
@@ -180,8 +185,8 @@ function selectCity(city, btnEl) {
   if (btnEl) btnEl.classList.add("active");
 
   const list = cityDistricts[city] || [];
-  document.getElementById("distHeader").innerText = city === "台北市"
-    ? "🏆 台北市・12 行政區全制霸（點擊直接進入開轉）："
+  document.getElementById("distHeader").innerText = (city === "台北市" || city === "台中市")
+    ? "🏆 " + city + "・已正式開城（點擊直接進入開轉）："
     : city + "・選擇行政區（籌備中區域可加 LINE 搶先卡位創始席）：";
 
   let html = "";
